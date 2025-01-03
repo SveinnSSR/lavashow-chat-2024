@@ -1,2390 +1,1790 @@
 // knowledgeBase.js
 export const knowledgeBase = {
-    opening_hours: {
-        tagline: "We look forward to welcoming you where the sea meets the sky",
-        regular: {
-            summer: {
-                period: "June 1 - September 30",
-                hours: "09:00 - 23:00",
-                daily: true,
-                facilities: {
-                    lagoon: "Closes 30 minutes before closing time",
-                    ritual: "Closes 1 hour before closing time",
-                    gelmir_bar: "Closes 1 hour before closing time",
-                    keimur_cafe: "09:00 - 22:30",
-                    smakk_bar: "12:00 - 22:30"
-                }
-            },
-            autumn: {
-                period: "October 1 - October 31",
-                hours: "10:00 - 23:00",
-                daily: true,
-                facilities: {
-                    lagoon: "Closes 30 minutes before closing time",
-                    ritual: "Closes 1 hour before closing time",
-                    gelmir_bar: "Closes 1 hour before closing time",
-                    keimur_cafe: "10:00 - 22:30",
-                    smakk_bar: "12:00 - 22:30"
-                }
-            },
-            winter: {
-                period: "November 1 - May 31",
-                weekday: {
-                    days: "Monday - Friday",
-                    hours: "11:00 - 22:00",
-                    facilities: {
-                        lagoon: "Closes 30 minutes before closing time",
-                        ritual: "Closes 1 hour before closing time",
-                        gelmir_bar: "Closes 1 hour before closing time",
-                        keimur_cafe: "11:00 - 21:30",
-                        smakk_bar: "12:00 - 21:30"
-                    }
+    general_info: {
+        tagline: "LAVA SHOW recreates a volcanic eruption by superheating real lava up to 1100°C (2000°F) and then pouring it into a showroom full of people.",
+        description: "Lava Show is the only live lava show in the world and has received multiple innovation awards and recognition for its educational and cultural value. With outstanding customer reviews.",
+        awards: ["2024 Tripadvisor Best of the Best"],
+        locations: {
+            reykjavik: {
+                name: "LAVA SHOW in Reykjavík",
+                address: "Fiskislóð 73, 101 Reykjavík",
+                description: "Our brand new location is located in Reykjavík, which is world-renowned for its culture, history, and natural beauty on all fronts. In the heart of Reykjavik.",
+                capacity: {
+                    classic: "82 seats (can be expanded to 86)",
+                    premium: "30 seats (can be expanded to 32)",
+                    total: "118 seats total possible"
                 },
-                weekend: {
-                    days: "Saturday - Sunday",
-                    hours: "10:00 - 22:00",
-                    facilities: {
-                        lagoon: "Closes 30 minutes before closing time",
-                        ritual: "Closes 1 hour before closing time",
-                        gelmir_bar: "Closes 1 hour before closing time",
-                        keimur_cafe: "11:00 - 21:30",
-                        smakk_bar: "12:00 - 21:30"
-                    }
-                }
+                opened: "November 2022"
+            },
+            vik: {
+                name: "LAVA SHOW in Vík",
+                address: "Víkurbraut 5, 870 Vík",
+                description: "Vík is a charming town nestled in the midst of Katla UNESCO Global Geopark, surrounded by volcanoes, glaciers, and black sand beaches. 190km (118 miles) away from Reykjavík.",
+                capacity: {
+                    current: "50 seats (can be expanded to 54/55)",
+                    future: "Expanding to 65 seats by end of January 2025"
+                },
+                opened: "September 2018"
             }
         },
-        holidays: {
-            christmas_eve: {
-                date: "December 24",
-                hours: "09:00 - 16:00",
-            },
-            christmas_day: {
-                date: "December 25",
-                hours: "09:00 - 18:00",
-            },
-            boxing_day: {
-                date: "December 26",
-                hours: "09:00 - 22:00",
-            },
-            new_years_eve: {
-                date: "December 31",
-                hours: "09:00 - 18:00",
-            },
-            new_years_day: {
-                date: "January 1",
-                hours: "10:00 - 22:00",
+        contact: {
+            main_phone: "+354 553 0005",
+            email: "info@lavashow.com",
+            reykjavik_desk: "+354 868 6005",
+            vik_desk: "+354 835 6777",
+            hours: {
+                phone_support: "9 AM - 7 PM",
+                website: "www.lavashow.com"
             }
-        },
-        important_notes: [
-            "The Lagoon area closes 30 minutes before advertised closing time",
-            "The Skjól Ritual and Gelmir Bar close one hour before facility closing",
-            "Last food orders at Smakk Bar are taken 30 minutes before closing",
-            "Advance booking recommended to secure your preferred time slot",
-            "Hours may vary during special holidays or events"
-        ],
-        dining_hours: {
-            keimur_cafe: {
-                name: "Keimur Café",
-                description: "Fresh coffee, light meals, and Icelandic treats",
-                summer: {
-                    period: "June 1 - September 30",
-                    hours: "09:00 - 22:30"
-                },
-                autumn: {
-                    period: "October 1 - October 31",
-                    hours: "10:00 - 22:30"
-                },
-                winter: {
-                    period: "November 1 - May 31",
-                    hours: "11:00 - 21:30"
-                },
-                notes: "Last orders 30 minutes before closing"
-            },
-            smakk_bar: {
-                name: "Smakk Bar",
-                description: "Icelandic culinary experience with tasting platters",
-                summer: {
-                    period: "June 1 - September 30",
-                    hours: "12:00 - 22:30"
-                },
-                autumn: {
-                    period: "October 1 - October 31",
-                    hours: "12:00 - 22:30"
-                },
-                winter: {
-                    period: "November 1 - May 31",
-                    hours: "12:00 - 21:30"
-                },
-                notes: "Last orders 30 minutes before closing"
-            },
-            gelmir_bar: {
-                name: "Gelmir Bar",
-                description: "In-water bar for drinks and refreshments",
-                note: "Closes one hour before facility closing",
-                access: "Available throughout lagoon opening hours until one hour before closing"
-            }
-        },
-        arrival_guidance: {
-            check_in: "Arrive within your 30-minute check-in window",
-            early_arrival: "Early arrival may result in waiting",
-            late_arrival: {
-                grace_period: "30 minutes from booked time",
-                beyond_grace: "Subject to availability if arriving after grace period"
-            }
-        },
-        seasonal_notes: {
-            summer: "Extended daylight hours with midnight sun possibilities in June",
-            winter: "Potential for northern lights viewing on clear evenings",
-            general: "Experience varies with Iceland's dramatic seasonal changes"
         }
     },
-
-    packages: {
-        saman: {
-            name: "Saman Package (Standard)",
-            description: "Our classic and most popular package - connect with tradition through the essential Sky Lagoon experience",  // Enhanced with website phrasing
-            includes: [
-                "Sky Lagoon admission",
-                "Skjól ritual access",
-                "Public changing facilities",
-                "Towels included",
-                "Access to in-water Gelmir Bar",
-                "Basic Sky Lagoon amenities"
-            ],
-            changing_facilities: {
-                type: "Public",
-                amenities: [
-                    "Showers",
-                    "Hair dryers",
-                    "Lockers",
-                    "Basic amenities",
-                    "Shared facilities"
-                ]
-            },
+    experiences: {
+        classic: {
+            name: "Classic Experience",
+            description: "The award-winning Lava Show immersive experience",
+            duration: "45-55 minutes",
             pricing: {
-                weekday: {
-                    range: "10,490 - 11,990 ISK",
-                    days: "Monday-Thursday",
-                    best_value: "Evening visits (7:30 PM - 8:30 PM)"
-                },
-                weekend: {
-                    range: "11,490 - 12,990 ISK",
-                    days: "Friday-Sunday"
-                }
+                adults: "5,900 ISK (13+)",
+                children: "3,500 ISK (age 12 and younger)"
             },
-            booking_info: {
-                how_to_book: "Book directly through our website or at reception",
-                availability: "Subject to capacity",
-                recommended: "Advance booking recommended",
-                modifications: {
-                    deadline: "24 hours notice required",
-                    contact: "reservations@skylagoon.is"
-                }
-            }
-        },
-        ser: {
-            name: "Sér Package (Premium)", 
-            description: "Discover the ultimate Sky Lagoon experience where the sea meets the sky. Our premium package includes Sky Lagoon's signature Skjól ritual and access to our private changing facilities.",  // Enhanced with website phrasing
             includes: [
-                "Sky Lagoon admission",
-                "One journey through the Skjól ritual",
-                "Private changing facilities with our signature Sky Body Lotion",
-                "Premium Sky Lagoon amenities",
-                "Towels included",
-                "Access to in-water Gelmir Bar"
+                "Live lava demonstration",
+                "Educational presentation",
+                "Security goggles",
+                "Interactive Q&A session",
+                "Free parking"
             ],
-            changing_facilities: {
-                type: "Private",
-                amenities: [
-                    "Individual private changing space",
-                    "Personal shower and changing area",
-                    "Premium hair dryers",
-                    "Sky Lagoon skincare products",
-                    "Enhanced privacy",
-                    "Luxury amenities"
-                ]
-            },
-            pricing: {
-                weekday: {
-                    range: "13,490 - 14,990 ISK",
-                    days: "Monday-Thursday",
-                    best_value: "Evening visits (7:30 PM - 8:30 PM)"
-                },
-                weekend: {
-                    range: "15,490 - 15,990 ISK",
-                    days: "Friday-Sunday"
-                }
-            },
-            features: "Well-appointed private changing rooms with enhanced comfort and premium amenities"
-        },
-        for_two: {
-            name: "Sky Lagoon for Two",
-            also_known_as: "Date Night",
-            description: "Share a rejuvenating journey with a partner, friend, or family member at Sky Lagoon.",
-            options: {
-                ser_for_two: {
-                    name: "Sér for Two",
-                    price: "From ISK 39,480",
-                    includes: [
-                        "2 x Sér passes",
-                        "Private changing facilities",
-                        "Skjól ritual access",
-                        "One drink per guest at Gelmir lagoon bar",
-                        "Sky Platter from Smakk Bar",
-                        "Towels included"
-                    ]
-                },
-                saman_for_two: {
-                    name: "Saman for Two",
-                    price: "From ISK 33,480",
-                    includes: [
-                        "2 x Saman passes",
-                        "Public changing facilities",
-                        "Skjól ritual access",
-                        "One drink per guest at Gelmir lagoon bar",
-                        "Sky Platter from Smakk Bar",
-                        "Towels included"
-                    ]
-                }
-            },
-            "booking_info": {
-                "how_to_book": "Book directly through our website or at reception",
-                "availability": "Subject to capacity",
-                "recommended": "Advance booking recommended",
-                "last_booking": "18:00",
-                "timing_note": "Last booking time ensures guests can fully enjoy all package inclusions including our Sky Platter and drinks service"
-            }
-        }
-    },
-
-    gift_tickets: {
-        marketing: {
-            tagline: "Share an oceanside escape with a Sky Lagoon gift ticket",
-            description: "From birthdays and anniversaries to holidays and thank you presents, a trip to Sky Lagoon is the gift that rejuvenates both body and soul.",
-            occasions: [
-                "Birthdays",
-                "Anniversaries",
-                "Holidays",
-                "Thank you presents",
-                "Special celebrations"
-            ]
-        },
-        options: {
-            ser_gift: {
-                name: "Sér Gift Ticket",
-                tagline: "Gift our premium package",
-                description: "Gift our premium package, including lagoon access, the Skjól ritual and private changing facilities",
-                price: "14,990 ISK",
-                includes: [
-                    "Lagoon access",
-                    "One journey through the Skjól ritual",
-                    "Private changing facilities with our signature Sky Body Lotion",
-                    "Towel"
-                ]
-            },
-            saman_gift: {
-                name: "Saman Gift Ticket",
-                tagline: "Gift our classic package",
-                description: "Gift our classic and most popular package, including lagoon access and a journey through the traditional bathing culture with the Skjól ritual",
-                price: "11,990 ISK",
-                includes: [
-                    "Lagoon access",
-                    "One journey through the Skjól ritual",
-                    "Public changing facilities",
-                    "Towel"
-                ]
-            },
-            for_two_gift: {
-                name: "Sky Lagoon for Two Gift Ticket",
-                tagline: "Give the gift of relaxation shared together",
-                options: {
-                    saman_for_two: {
-                        name: "Saman for Two",
-                        price: "33,480 ISK",
-                        description: "Two Saman passes to share a rejuvenating journey together",
-                        includes: [
-                            "Two Saman Passes",
-                            "One drink per guest",
-                            "Sky Platter from Smakk Bar"
-                        ]
-                    },
-                    ser_for_two: {
-                        name: "Sér for Two",
-                        price: "39,480 ISK",
-                        description: "Two Sér passes for the ultimate shared experience",
-                        includes: [
-                            "Two Sér Passes",
-                            "One drink per guest",
-                            "Sky Platter from Smakk Bar"
-                        ]
-                    }
-                },
-                important_note: "The Sky Lagoon for Two gift ticket comes in two gift tickets that must be used together when booking the experience. The two tickets can not be used separately."
-            },
-            multi_pass_gift: {
-                name: "Multi-Pass Gift Ticket",
-                tagline: "Share the joys of regular wellness",
-                description: "Share the gift of lasting bliss with our Multi-Pass gift cards which include six visits to Sky Lagoon for far less than regular price.",
-                options: {
-                    hefd: {
-                        name: "Hefð Multi-Pass",
-                        description: "Six premium Sér experiences",
-                        price: "56,970 ISK",
-                        features: "Premium experience with private facilities"
-                    },
-                    venja: {
-                        name: "Venja Multi-Pass",
-                        description: "Six classic Saman experiences",
-                        price: "44,970 ISK",
-                        features: "Classic experience with standard facilities"
-                    }
-                },
-                note: "Valid for 4 years from purchase date"
+            show_times: {
+                reykjavik: ["10:00", "12:00", "14:00", "16:00", "18:00", "20:00"],
+                vik: ["11:00", "13:00", "15:00", "17:00", "19:00", "21:00"]
             }
         },
-        redemption: {
-            tagline: "How to Redeem Your Gift Ticket",
-            steps: [
-                {
-                    name: "Book Your Time in Advance",
-                    description: "If you have a gift ticket, it's essential to schedule your visit beforehand"
-                },
-                {
-                    name: "Enter Gift Ticket Code",
-                    description: "To book your visit, check out through the booking portal and enter your gift ticket code in the 'Order Details' section"
-                },
-                {
-                    name: "Receive New Ticket",
-                    description: "After booking, you'll receive a new ticket via email that will grant you access on the date and time you've selected"
-                }
+        premium: {
+            name: "Premium Experience",
+            description: "Takes the award-winning Classic Experience to new heights",
+            duration: "60-75 minutes",
+            price: "9,900 ISK",
+            age_restriction: "Adults only (13+)",
+            includes: [
+                "Aperitif (drink) upon arrival",
+                "VIP access to the premium lounge",
+                "The balcony view experience (extra hot)",
+                "A backstage tour to the furnace room",
+                "A piece of lava from the show, giftwrapped",
+                "Free parking"
             ],
-            for_two_note: "For Sky Lagoon for Two gift cards, you will need to enter two codes - press Apply after each one",
-            important_notes: [
-                "Advance booking essential",
-                "Must use gift ticket code during booking process",
-                "Bring booking confirmation to Sky Lagoon",
-                "For Two packages must be booked together"
-            ]
-        },
-        availability: {
-            booking_required: true,
-            subject_to_capacity: true,
-            advance_recommended: true,
-            modifications: {
-                allowed: true,
-                notice_required: "24 hours",
-                contact: "reservations@skylagoon.is"
-            }
+            locations: ["Reykjavík only"]
         }
     },
-
-    booking_modifications: {
-        policy: {
-            standard: {
-                allowed: true,
-                conditions: [
-                    "Booking date/time has not passed",
-                    "Availability exists for requested new time"
-                ],
-                contact_options: {
-                    phone: {
-                        hours: "09:00 - 19:00",
-                        description: "Preferred method for same-day changes"
-                    },
-                    email: {
-                        address: "reservations@skylagoon.is",
-                        description: "For future date modifications"
-                    }
-                }
-            },
-            late_arrival: {
-                grace_period: "30 minutes",
-                scenarios: {
-                    within_grace: {
-                        status: "Automatically accommodated",
-                        action: "Proceed directly to reception"
-                    },
-                    beyond_grace: {
-                        status: "Subject to availability",
-                        primary_action: "Offer booking modification",
-                        secondary_action: "May wait upon arrival if sold out"
-                    },
-                    sold_out_day: {
-                        status: "Limited flexibility",
-                        explanation: "Cannot modify same-day booking when sold out",
-                        options: [
-                            "Wait upon arrival (subject to reception discretion)",
-                            "Change to future date"
-                        ]
-                    }
-                }
-            },
-            sold_out_handling: {
-                priority: "Encourage rebooking to different date/time",
-                reasoning: "Helps manage capacity and maximize availability",
-                exceptions: "Reception team member discretion for same-day adjustments"
-            }
-        }
-    },
-
-    ritual: {
-        marketing: {
-            tagline: "A healing journey rooted in heritage",
-            description: "Our all-encompassing wellness journey guides you through Icelandic bathing culture, powered by the elements that make Iceland unique.",
-            highlights: [
-                "Connect with tradition through ancient bathing practices",
-                "Experience the power of warm and cold therapy",
-                "Journey through seven steps of rejuvenation",
-                "Immerse yourself in Iceland's bathing heritage"
-            ]
-        },
-        status: {
-            included: true,
-            mandatory: true,
-            packages: [
-                "Included in Saman Package",
-                "Included in Sér Package"
-            ],
-            booking: "Cannot be booked separately or excluded from packages"
-        },
-        steps: {
-            laug: {
-                name: "Laug (Warm Lagoon)",
-                description: "Begin your journey by feeling the embrace of our geothermal Laug. Settle into the natural warmth, lose yourself in the calming energy and soak in the stunning views.",
-                temperature: "38-40°C — Warm and relaxing"
-            },
-            kuldi: {
-                name: "Kuldi (Cold Plunge)",
-                description: "Inspired by Iceland's ancient Snorralaug pool, the Kuldi plunge engages and awakens your every sense, connecting you to a practice passed down for countless generations.",
-                temperature: "5°C — Cold but energising"
-            },
-            ylur: {
-                name: "Ylur (Sauna)",
-                description: "Discover absolute tranquility as steam and Ylur open your pores, remove toxins and cleanse your skin. Choose from our classic or phone-free sauna, both offering breathtaking seaside views.",
-                temperature: "80-90°C — Warm and ethereal"
-            },
-            suld: {
-                name: "Súld (Cold Mist)",
-                description: "Feel the touch of Icelandic winds and the crisp, cool Súld — a revitalizing mist that whispers stories of resilience.",
-                temperature: "~5°C — Cold but refreshing"
-            },
-            mykt: {
-                name: "Mýkt (Sky Body Scrub)",
-                description: "It's time for gentle invigoration. Exfoliate your skin and lose yourself in the Mýkt of our signature Sky Body Scrub. Slowly, you'll feel the enlivening effects.",
-                features: "Exfoliating and rejuvenating",
-                ingredients: [
-                    "Almond oil",
-                    "Sesame seed oil"
-                ]
-            },
-            gufa: {
-                name: "Gufa (Steam)",
-                description: "Let the Gufa wrap around you, allowing your skin to absorb the key therapeutic elements of the Skjól ritual and maximize the hydrating benefits of the Sky Body Scrub.",
-                temperature: "46°C — A healing heat"
-            },
-            saft: {
-                name: "Saft (Refreshment)",
-                description: "Taste the essence of krækiber — the crowberries that dot our lava fields. Drank by Icelanders for centuries, this wholesome Saft elixir stimulates the palate with a profile that embodies the spirit of our land."
-            }
-        },
-        experience: {
-            location: "Dedicated ritual areas within Sky Lagoon",
-            duration: "Take your time to enjoy each step",
-            guidance: "Self-guided with clear instructions at each station",
-            benefits: [
-                "Deep relaxation and rejuvenation",
-                "Traditional therapeutic elements",
-                "Connection to Icelandic heritage",
-                "Complete mind and body wellness"
-            ]
-        },
-        important_notes: [
-            "Essential part of Sky Lagoon experience",
-            "Cannot be excluded from visit",
-            "Included in all admission packages",
-            "No separate booking option available",
-            "One complete journey through all seven steps included per visit"
-        ]
-    },
-
-    seasonal_information: {
-        winter: {
-            experience: {
-                tagline: "Where the Sea Meets the Sky - A Winter Journey",
-                description: "Enter a journey of the senses powered by the elements, as you experience our iconic destination in winter's embrace",
-                highlights: [
-                    "A chance to see the northern lights dancing above while relaxing in the lagoon (weather and conditions permitting)",
-                    "Snow-covered surroundings creating a magical winter atmosphere",
-                    "Experience the powerful contrast between warm geothermal waters and crisp winter air",
-                    "Gaze at stunning winter sunsets from our infinity edge",
-                    "Starry night sky views stretching endlessly over the ocean (weather permitting)",
-                    "Connect with the dramatic winter elements in our warm embrace",
-                    "Less crowded than summer months for a more serene experience"
-                ],
-                temperature: {
-                    water: "38-40°C maintained year-round",
-                    air: "Average -1°C to 4°C"
-                },
-                visitor_patterns: "Generally less crowded than summer",
-                special_features: {
-                    northern_lights: {
-                        description: "Possibility to view the northern lights while soaking in our warm waters (weather dependent)",
-                        best_viewing: "On clear, dark winter nights",
-                        notes: "While sightings cannot be guaranteed as they depend on natural conditions, our infinity edge provides an unobstructed view of the dancing lights"
-                    },
-                    winter_sky: "Opportunity to connect with Iceland's starry winter skies from the warm embrace of our lagoon"
-                }
-            }
-        },
-        summer: {
-            experience: {
-                tagline: "Endless Summer Light Where Sky Meets Sea",
-                description: "Experience the magic of Icelandic summer, where day seamlessly blends into night under the Midnight Sun",
-                highlights: [
-                    "Experience the legendary Midnight Sun (around June 21)",
-                    "Extended daylight hours until closing at 23:00",
-                    "Late evening sun views from infinity edge",
-                    "Bask in the bright Nordic evening atmosphere",
-                    "Experience warmer outdoor temperatures while maintaining our perfectly heated waters",
-                    "Golden light illuminating the lagoon at midnight (June)",
-                    "Perfect for evening relaxation under the eternal sun",
-                    "Take in the panoramic ocean views from our infinity edge"
-                ],
-                temperature: {
-                    water: "38-40°C maintained year-round",
-                    air: "Average 10°C to 15°C"
-                },
-                visitor_patterns: "Peak season with more visitors",
-                special_features: {
-                    midnight_sun: {
-                        description: "Experience nearly 24 hours of daylight during our magical summer months",
-                        peak_period: "Mid-May to mid-August",
-                        longest_day: "Around June 21",
-                        evening_experience: {
-                            hours: "9:00 - 23:00 daily",
-                            highlights: [
-                                "Late evening sun views from infinity edge",
-                                "Extended twilight atmosphere",
-                                "Optimal viewing times from 20:00-23:00",
-                                "Perfect for evening relaxation under the midnight sun"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        general: {
-            tagline: "Experience the Elements Year-Round",
-            description: "Enter a journey where the power of nature meets modern comfort, powered by the elements that make Iceland unique",
-            year_round_features: [
-                "Consistent geothermal water temperature (38-40°C)",
-                "Our signature Skjól ritual available all seasons",
-                "Indoor facilities heated year-round",
-                "Experience the healing powers of geothermal water",
-                "Panoramic ocean views stretching to the horizon",
-                "Connect with nature at our iconic infinity edge"
-            ],
-            weather_info: {
-                description: "Icelandic weather can be unpredictable",
-                recommendations: [
-                    "Dress appropriately for the season",
-                    "Consider bringing a head covering for additional comfort",
-                    "Hats available for purchase at reception and Gelmir Bar",
-                    "Weather changes do not affect water temperature"
-                ]
-            }
-        }
-    },
-
-    dining: {
-        introduction: {
-            main_tagline: "Indulge in Icelandic Cuisine - A Taste of our Island Nation",
-            description: "After invigorating both body and mind, let your taste buds have their moment. At Sky Lagoon, we believe in honouring Icelandic culture, heritage and tradition through our carefully selected local vendors and authentic dining experiences."
-        },
-        venues: {
-                smakk_bar: {
-                    name: "Smakk Bar",
-                    tagline: "Explore and Discover at Smakk Bar",
-                    description: "Sample Iceland's culinary world at Smakk Bar. Team your lagoon experience with a unique tasting platter, offering a taste of the flavours that are characteristic of our island nation. It's an inspiring way to connect with Iceland in a whole new sense.",
-                    concept: {
-                        description: "We believe in honouring Icelandic culture, tradition and heritage in everything we do — big and small.",
-                        local_focus: "Our partners are local family businesses and community members that have made a mark on the Icelandic food saga — from our island nation's first specialty coffee shop to one of the oldest bakeries in Iceland."
-                    },
-                location: "Post-lagoon dining area",
-                opening_hours: {
-                    summer: {
-                        period: "June 1 - September 30",
-                        hours: "12:00 - 22:30"
-                    },
-                    autumn: {
-                        period: "October 1 - October 31",
-                        hours: "12:00 - 22:30"
-                    },
-                    winter: {
-                        period: "November 1 - May 31",
-                        hours: "12:00 - 21:30"
-                    }
-                },
-                menu: {
-                    small_platters: [
-                        {
-                            name: "Mind At Cheese",
-                            description: "A creamy cheese named Auður, the fittingly named white mould cheese Ljótur (meaning 'ugly') and the flavourful Feykir paired with organic bilberry jam from Vallanes. Served with freshly baked bread.",
-                            price: "2,490 ISK"
-                        },
-                        {
-                            name: "The Generous Sea",
-                            description: "Traditional pickled herring from the fishing village Djúpivogur, served on rye bread with Icelandic beetroots and Iceland's signature gravlax with a home-made mustard and dill sauce. Served with freshly baked bread.",
-                            price: "2,590 ISK"
-                        },
-                        {
-                            name: "Cheese & Chocolate",
-                            description: "Delicious chocolate assortments from the oldest chocolate factory in Iceland, Nói Siríus, paired with our favourite cheese duo: the creamy Auður and the piquant Feykir from north of Iceland, served with organic bilberry jam.",
-                            price: "2,190 ISK"
-                        }
-                    ],
-                    large_platters: [
-                        {
-                            name: "The Sky Platter",
-                            description: "The platter with everything. Auður cheese, Feykir and organic bilberry jam, reindeer, pork and goose wild game pâté with red onion jam, signature gravlax with home-made mustard and dill sauce, Hjónabandssæla rhubarb pie. Served with freshly baked bread.",
-                            price: "7,190 ISK",
-                            note: "Ideal for sharing"
-                        },
-                        {
-                            name: "The Icelandic Feast",
-                            description: "Iceland's signature gravlax with home-made mustard and dill sauce and cured sheep fillet with horseradish sauce, pickled herring from Djúpivogur on rye bread, Ljótur blue cheese, flavourful Feykir and organic blueberry jam. Served with freshly baked bread.",
-                            price: "7,090 ISK"
-                        },
-                        {
-                            name: "The Good-Natured Vegan Platter",
-                            description: "Delicious 'feta cheese' with pickled Icelandic vegetables, date and beetroot purée served on freshly baked rye bread, fresh hummus, olives and gourmet sauerkraut along with a chocolate cake with peanuts. Served with freshly baked bread.",
-                            price: "6,890 ISK"
-                        }
-                    ],
-                    drinks: {
-                        beer_on_tap: [
-                            {
-                                name: "Gull",
-                                type: "Lager 4%",
-                                price: "1,890 ISK"
-                            },
-                            {
-                                name: "Somersby",
-                                type: "Apple Cider 4.5%",
-                                price: "1,990 ISK"
-                            }
-                        ],
-                        wine: [
-                            {
-                                name: "House Wine",
-                                type: "Red/White/Rosé",
-                                price: "from 1,890 ISK"
-                            },
-                            {
-                                name: "Moët & Chandon",
-                                type: "Champagne",
-                                price: "3,490 ISK"
-                            }
-                        ],
-                        soft_drinks: [
-                            {
-                                name: "Various Soft Drinks",
-                                price: "590 ISK"
-                            },
-                            {
-                                name: "Premium Lemonade",
-                                price: "1,490 ISK"
-                            }
-                        ]
-                    }
-                },
-                features: [
-                    "Vegan options available",
-                    "Gluten-free options available",
-                    "Local Icelandic ingredients",
-                    "Fresh baked bread",
-                    "Seasonal specialties"
-                ]
-            },
-            keimur_cafe: {
-                name: "Keimur Café",
-                tagline: "Rustic. Simple. Keimur Café.",
-                description: "Slow down, savour the here and now. Join us at Keimur Café for sandwiches, soups and baked goods delivered fresh every morning from one of Iceland's oldest bakeries, Sandholt.",
-                opening_hours: {
-                    summer: {
-                        period: "June 1 - September 30",
-                        hours: "9:00 - 22:30"
-                    },
-                    autumn: {
-                        period: "October 1 - October 31",
-                        hours: "10:00 - 22:30"
-                    },
-                    winter: {
-                        period: "November 1 - May 31",
-                        hours: "11:00 - 21:30"
-                    }
-                },
-                menu: {
-                    hot_drinks: [
-                        {
-                            name: "Coffee",
-                            price: "690 ISK"
-                        },
-                        {
-                            name: "Americano",
-                            price: "690 ISK"
-                        },
-                        {
-                            name: "Latte",
-                            price: "790 ISK"
-                        },
-                        {
-                            name: "Cappuccino",
-                            price: "780 ISK"
-                        },
-                        {
-                            name: "Tea",
-                            price: "650 ISK"
-                        }
-                    ],
-                    food: [
-                        {
-                            name: "Soup of the day",
-                            price: "2,490 ISK"
-                        },
-                        {
-                            name: "Ham and Cheese Toastie",
-                            price: "2,190 ISK"
-                        },
-                        {
-                            name: "Veggie Toastie",
-                            price: "1,990 ISK"
-                        },
-                        {
-                            name: "Gravlax Bagel",
-                            price: "2,390 ISK"
-                        },
-                        {
-                            name: "Hummus Bagel",
-                            price: "1,990 ISK"
-                        },
-                        {
-                            name: "Grandma's Skyr",
-                            price: "1,890 ISK"
-                        }
-                    ]
-                }
-            },
-            gelmir_bar: {
-                name: "Gelmir Bar",
-                tagline: "Let your Mind Drift at Gelmir Bar",
-                description: "Enjoy an Icelandic beer, mixed drink or glass of wine right where the sea meets the sky. Find your way to our cave-side bar beneath the canopy on the far edge of the lagoon to relax and linger with your drink of choice in hand.",
-                location: "In-water bar within the lagoon",
-                policies: {
-                    payment: "Use wristband for all purchases",
-                    drink_limit: "Maximum three alcoholic drinks per guest",
-                    requirements: "Valid ID may be required"
-                },
-                menu: {
-                    on_tap: [
-                        {
-                            name: "Gull",
-                            type: "Lager 4%",
-                            price: "1,890 ISK"
-                        },
-                        {
-                            name: "Somersby",
-                            type: "Apple Cider 4.5%",
-                            price: "1,990 ISK"
-                        }
-                    ],
-                    wine: [
-                        {
-                            name: "Sparkling Wine",
-                            price: "2,290 ISK"
-                        },
-                        {
-                            name: "Monalto Rosé",
-                            price: "2,490 ISK"
-                        }
-                    ],
-                    non_alcoholic: [
-                        {
-                            name: "Soft Drinks",
-                            price: "590 ISK"
-                        },
-                        {
-                            name: "Collab",
-                            type: "Caffeine Drink",
-                            price: "790 ISK"
-                        },
-                        {
-                            name: "Fresh Juice",
-                            price: "590 ISK"
-                        }
-                    ]
-                },
-                closing: "Closes one hour before facility closing time"
-            }
-        },
-        philosophy: {
-            locally_sourced: {
-                description: "Ingredients arrive from throughout Iceland. Game is hunted by a father-son duo roaming the historic fields of Landeyjar, South Iceland. Pickled herring originates from the charming fishing village of Djúpivogur.",
-                vision: "Every smakk (meaning taste) on our distinctly Icelandic platters blends in perfect harmony with one another, creating an authentic culinary journey."
-            }
-        },
-        general_info: {
-            payment: {
-                method: "Cashless system using wristband",
-                process: "Credit card linked at check-in for all purchases"
-            },
-            dietary_options: {
-                available: [
-                    "Vegan options",
-                    "Gluten-free options",
-                    "Vegetarian options"
-                ]
-            },
-            local_focus: {
-                description: "Featuring dishes and drinks from local vendors",
-                highlights: [
-                    "Local family businesses",
-                    "Traditional Icelandic ingredients",
-                    "Seasonal specialties",
-                    "Fresh local produce"
-                ]
-            }
-        }
-    },
-
-    payment_systems: {
-        wristband: {
-            functions: {
-                primary: [
-                    "Payment method for all in-facility purchases",
-                    "Locker key",
-                    "Access control"
-                ],
-                setup: {
-                    process: "Credit card linked at check-in",
-                    security: "Secure encryption for all transactions",
-                    location: "Reception desk during check-in"
-                }
-            },
-            usage: {
-                accepted_locations: [
-                    "In-water Gelmir Bar",
-                    "Keimur Café",
-                    "Smakk Bar",
-                    "All facility outlets"
-                ],
-                limitations: {
-                    alcohol: "Maximum three alcoholic drinks per guest",
-                    currency: "No cash accepted in lagoon area"
-                }
-            },
-            lost_wristband: {
-                procedure: [
-                    "Report immediately to our team members",
-                    "Wristband will be deactivated",
-                    "New wristband issued if needed"
-                ],
-                security: {
-                    deactivation: "Immediate upon report",
-                    protection: "No unauthorized charges possible after deactivation"
-                }
-            }
-        },
-        payment_methods: {
-            accepted: {
-                pre_booking: [
-                    "Credit cards",
-                    "Debit cards",
-                    "Online payment systems"
-                ],
-                on_site: [
-                    "Credit cards",
-                    "Debit cards",
-                    "Wristband (within facility)",
-                    "Mobile payments"
-                ],
-                restrictions: "Cash not accepted in lagoon area"
-            },
-            booking_requirements: {
-                online: "Full payment required at time of booking",
-                groups: "Special payment arrangements available for large groups",
-                modifications: "Changes subject to availability and terms"
-            }
-        },
-        checkout: {
-            process: [
-                "Review charges on wristband",
-                "Settle final balance",
-                "Return wristband"
-            ],
-            location: "Reception desk",
-            timing: "Complete before leaving facility"
-        },
-        special_arrangements: {
-            groups: {
-                available: true,
-                contact: "groups@skylagoon.is",
-                minimum_size: 10
-            },
-            corporate: {
-                available: true,
-                billing: "Invoice options available",
-                contact: "corporate@skylagoon.is"
-            }
-        }
-    },
-
-    policies: {
-        age_restrictions: {
-            minimum_age: 12,
-            supervision: "Ages 12-14 must be accompanied by a guardian (18 years or older)",
-            verification: "Valid ID may be requested",
-            rationale: {
-                reasons: [
-                    "Experience designed for adult relaxation",
-                    "Alcohol service in lagoon",
-                    "Optimal guest experience"
-                ]
-            }
-        },
+    booking_policies: {
         cancellation: {
-            individual: {
-                notice: "24 hours",
-                group_size: "1-9 guests",
-                refund: "Full refund available with proper notice"
+            policy: "All tickets fully refundable if cancelled within 24 hrs.",
+            group_bookings: {
+                small: "3 days notice required",
+                fees: "100% fee if canceled less than 1 day before show time for individuals, 3 days for groups"
             },
-            groups: {
-                small: {
-                    notice: "72 hours",
-                    size: "11-25 guests"
-                },
-                medium: {
-                    notice: "96 hours",
-                    size: "26-50 guests"
-                },
-                large: {
-                    notice: "2 weeks",
-                    size: "51-100 guests"
-                },
-                extra_large: {
-                    notice: "12 weeks",
-                    size: "101+ guests"
-                }
-            },
-            how_to_cancel: {
-                email: "reservations@skylagoon.is",
-                required_info: ["Booking reference number", "Preferred action (refund/date change)"]
-            }
-        },
-        health_safety: {
-            medical_conditions: {
-                consultation: "Physician consultation recommended for underlying conditions",
-                high_risk_conditions: [
-                    "Cardiovascular disease",
-                    "High or low blood pressure",
-                    "Recent surgery",
-                    "Serious medical conditions"
-                ],
-                safety_measures: {
-                    wristbands: {
-                        available: "High-visibility wristbands for guests needing extra attention",
-                        process: "Request at reception",
-                        team_member_notification: "Safety personnel notified"
-                    },
-                    monitoring: "Regular team member supervision",
-                    assistance: "Trained team members available",
-                    facilities: "Private changing spaces available"
-                }
-            },
-            pregnancy: {
-                allowed: true,
-                temperature: "38°C (100.4°F)",
-                guidelines: [
-                    "Consult physician before visiting",
-                    "Listen to your body",
-                    "Stay hydrated",
-                    "Exit if feeling uncomfortable",
-                    "Avoid extreme temperature changes"
-                ],
-                recommendations: "Each person responsible for own health assessment"
-            },
-            allergies: {
-                ritual_products: {
-                    ingredients: [
-                        "Almond oil",
-                        "Sesame seed oil"
-                    ],
-                    alternatives: "Skip scrub step if allergic",
-                    notification: "Inform team members of allergies"
-                },
-                food_allergies: {
-                    protocol: "Alert our dining team members",
-                    information: "Ingredient lists available",
-                    alternatives: "Various options available"
-                }
-            },
-            hydration_wellness: {
-                water_stations: {
-                    locations: [
-                        "Changing rooms",
-                        "Lagoon area",
-                        "Near ritual areas"
-                    ],
-                    type: "Fresh drinking water",
-                    availability: "Free access",
-                    priority: "Primary hydration source"
-                },
-                recommendations: [
-                    "Drink water regularly from our water stations",
-                    "Take breaks when needed",
-                    "Don't visit on empty stomach",
-                    "Avoid excessive alcohol"
-                ],
-                bar_options: {  // New section to clarify hydration vs bar service
-                    location: "Gelmir lagoon bar in the lagoon",
-                    options: [
-                        "Various non-alcoholic beverages",
-                        "Refreshing drinks",
-                        "Alcoholic beverages (maximum three per guest)"
-                    ],
-                    payment: "Cashless wristband system"
-                }
-            }
-        },
-        booking_capacity: {
-            availability: {
-                system: "Real-time capacity management system",
-                capacity_display: {
-                    single_spot: "When system shows '1 available', this means space for only one person",
-                    multiple_spots: "Number shown indicates exact capacity available per time slot",
-                    sold_out: "When website shows no availability, we cannot accommodate any additional guests"
-                },
-                real_time: "Availability updates automatically with bookings and cancellations",
-                walk_in_policy: {
-                    rules: "Walk-ins only possible if website shows availability",
-                    restrictions: "Cannot accommodate guests beyond shown availability, even for walk-ins",
-                    reason: "Strict capacity limits for guest comfort and safety"
-                },
-                cancellations: "Website automatically updates if spots become available due to cancellations"
-            }
-        },
-        photography: {
-            rules: [
-                "Permission required from Sky Lagoon team",
-                "Private use only",
-                "No commercial use",
-                "Respect other guests' privacy",
-                "No photography in changing rooms"
+            important_notes: [
+                "No refunds for no-shows",
+                "No refunds for late arrivals",
+                "Rescheduling possible based on availability"
             ]
+        },
+        arrival: {
+            recommendation: "We suggest arriving at least 20 minutes early",
+            late_policy: "Can accommodate late customers up to 10-13 minutes from show start",
+            check_in: {
+                classic: "Check in at the counter downstairs",
+                premium: [
+                    "Check in downstairs at the counter",
+                    "Be shown to our beautiful premium lounge",
+                    "Get a drink of choice from LAVA BAR",
+                    "Relax and enjoy the lounge"
+                ]
+            }
+        },
+        seasonality: {
+            peak_seasons: [
+                "July",
+                "August",
+                "October",
+                "Christmas & New Years (Dec 23-Jan 5)",
+                "February",
+                "Easter (7 days)"
+            ],
+            low_season: "November, December 1-22, January 6-31",
+            medium_season: "March, April (apart from Easter), May, June, September"
         }
     },
-
-    facilities: {
-        amenities: {
-            tagline: "Experience the heart of Icelandic tradition at our oceanside geothermal lagoon",
-            included: [
-                "Towels included free of charge",
-                "Changing rooms designed for comfort and privacy",
-                "Secure lockers with electronic wristband access",
-                "Fresh drinking water stations",
-                "In-water Gelmir Bar beneath the cave-wall canopy",
-                "Keimur Café for light refreshments",
-                "Smakk Bar for Icelandic culinary experiences"
-            ],
-            changing_facilities: {
-                public: {
-                    name: "Saman facilities",
-                    marketing_description: "Our classic and most popular option, offering a traditional Icelandic bathing experience",
-                    features: [
-                        "Traditional public changing facilities",
-                        "Full shower amenities",
-                        "Hair dryers for convenience",
-                        "Essential Sky Lagoon amenities",
-                        "Secure locker system",
-                        "Gender-specific areas for comfort"
-                    ]
-                },
-                private: {
-                    name: "Sér facilities",
-                    marketing_description: "Discover the ultimate Sky Lagoon experience with enhanced privacy and premium amenities",
-                    features: [
-                        "Well-appointed private changing rooms",
-                        "Individual shower suites",
-                        "Premium Sky Lagoon amenities",
-                        "Signature Sky Body Lotion",
-                        "Enhanced privacy and comfort",
-                        "Gender-neutral private facilities"
-                    ]
+    educational_content: {
+        lava_info: {
+            origin: "The lava originates from the 1918 Katla eruption",
+            composition: {
+                material: "Basaltic tephra (basaltic sand from black sand beaches)",
+                elements: {
+                    silica: "47%",
+                    iron: "14%",
+                    calcium: "9%",
+                    aluminum: "13%",
+                    titanium: "4%",
+                    magnesium: "5%",
+                    sodium: "3%"
                 }
             },
-            rentals: {
-                swimsuit: {
-                    available: true,
-                    price: "1,500 ISK",
-                    description: "Clean and comfortable swimwear options available for rent",
-                    options: [
-                        "Various sizes of swimsuits and swim trunks",
-                        "Freshly cleaned and sanitized",
-                        "Available at reception",
-                        "Optional if you prefer to bring your own"
-                    ]
-                },
-                luggage_storage: {
-                    available: true,
-                    price: "990 ISK",
-                    description: "Secure storage for any kind of baggage that does not fit into your locker",
-                    location: "Conveniently located at reception"
+            temperature: {
+                melting_point: "900°C minimum",
+                show_temperature: "1100°C (2000°F)",
+                reason: "Optimal viscosity for demonstrating natural lava flow"
+            },
+            melting_process: {
+                initial_heat_time: "5 hours for first show",
+                subsequent_shows: "1.5-2 hours between shows",
+                sustainability: {
+                    reykjavik: "Furnace runs on methane from municipal waste",
+                    vik: "Furnace runs on propane"
                 }
+            }
+        },
+        safety_info: {
+            air_quality: {
+                monitoring: "Regular air quality testing",
+                ventilation: "Advanced air conditioning system",
+                safety_measures: "Heat and steam extraction systems"
+            },
+            protective_equipment: {
+                viewers: "Security goggles provided",
+                temperature_control: "Optimal viewing distance maintained",
+                facility_design: "Purpose-built for safe viewing"
+            }
+        }
+    },
+    group_services: {
+        capacity: {
+            reykjavik: {
+                total: "118 seats",
+                premium_lounge: "32 seats",
+                main_area: "86 seats"
+            },
+            vik: {
+                current: "50-55 seats",
+                upcoming: "Expanding to 65 seats (2025)"
+            }
+        },
+        private_events: {
+            premium_lounge: {
+                description: "Exclusive access to our luxurious premium lounge",
+                capacity: "15-25 people (Max: 32)",
+                includes: [
+                    "Exclusive private access",
+                    "Aperitif",
+                    "Piece of lava",
+                    "Premium balcony seating",
+                    "Backstage tour"
+                ],
+                add_ons: [
+                    "Food and drink options",
+                    "Extended hours until 23:00",
+                    "Meet the founders",
+                    "Karaoke equipment rental"
+                ]
+            },
+            entire_facility: {
+                description: "Full facility rental for larger groups",
+                capacity: "Up to 118 people",
+                includes: [
+                    "Access to entire facility",
+                    "Ground floor welcome area",
+                    "Premium Lounge access",
+                    "Custom show experience"
+                ],
+                add_ons: [
+                    "Food and beverage packages",
+                    "Extended hours until 23:00",
+                    "Founder presentations",
+                    "Custom entertainment options"
+                ]
+            }
+        }
+    },
+    gift_shop: {
+        description: "Authentic lava products made from the lava from our show. Our collection is uniquely valuable as removing lava from its natural environment in Iceland is prohibited without explicit authorization.",
+        products: {
+            lava_items: [
+                {
+                    name: "Lava Shard",
+                    description: "A shard of lava, presented in a velvet gift bag",
+                    uniqueness: "From 1918 Katla eruption"
+                },
+                {
+                    name: "Pele's Hair - Small",
+                    description: "A rarity of nature in a small glass jar"
+                },
+                {
+                    name: "Pele's Hair - Large",
+                    description: "A rarity of nature in a large glass jar"
+                },
+                {
+                    name: "Dragon Glass Necklace",
+                    description: "Unique necklace made of real obsidian"
+                },
+                {
+                    name: "Pele's Tear Necklace",
+                    description: "Handmade with silver"
+                },
+                {
+                    name: "Pele's Tear Earrings",
+                    description: "Handmade with silver"
+                }
+            ],
+            merchandise: [
+                {
+                    name: "T-shirts",
+                    available: true
+                },
+                {
+                    name: "Stamps",
+                    available: true
+                },
+                {
+                    name: "Postcards",
+                    available: true
+                }
+            ]
+        },
+        gift_cards: {
+            options: [
+                {
+                    name: "Classic Experience Gift Card",
+                    validity: "Valid for 375 days after purchase",
+                    redemption: "Contact info@lavashow.com or call +354 553 0005 to book",
+                    delivery_options: {
+                        electronic: {
+                            default: "Sent via booking system email",
+                            alternative: "Elegant version available on request"
+                        },
+                        physical: "Available for pickup in Reykjavík or Vík"
+                    }
+                },
+                {
+                    name: "Premium Experience Gift Card",
+                    validity: "Valid for 375 days after purchase",
+                    redemption: "Contact info@lavashow.com or call +354 553 0005 to book",
+                    experience_details: {
+                        duration: "1 hour and 15 minutes",
+                        arrival: "30 minutes prior to show",
+                        process: [
+                            "Check in downstairs",
+                            "Premium lounge access",
+                            "Drink selection",
+                            "Expert host interaction",
+                            "Volcanologist suit photo opportunity",
+                            "Premium balcony seating selection"
+                        ]
+                    }
+                },
+                {
+                    name: "Premium Gift Box",
+                    description: "Selected Lava Show items"
+                }
+            ],
+            general_info: {
+                validity: "375 days from purchase",
+                booking_process: "Contact required to schedule visit",
+                contact: {
+                    email: "info@lavashow.com",
+                    phone: "+354 553 0005"
+                },
+                delivery: {
+                    electronic: {
+                        default: "Sent via booking system email",
+                        alternative: "Elegant version available on request"
+                    },
+                    physical: "Available for pickup in Reykjavík or Vík"
+                }
+            }
+        }
+    },
+    faq: {
+        booking_questions: {
+            advance_booking: {
+                question: "Should tickets be purchased in advance?",
+                answer: "We recommend purchasing tickets in advance to guarantee your seats, especially during May - early October and during Christmas. Book at www.lavashow.com to check availability."
+            },
+            duration: {
+                question: "How long does the experience last?",
+                answer: {
+                    classic: "45-55 minutes for Classic experience",
+                    premium: "75 minutes including VIP lounge time and backstage tour"
+                }
+            },
+            children: {
+                question: "Can children attend?",
+                answer: "Children aged 1-12 are welcome at the Classic Experience at a discounted rate. The Premium experience has a minimum age requirement of 13 years.",
+                note: "While family-friendly, the show may not be best suited for ages 0-4 years due to the educational nature and English-language presentation. Parents are responsible for children's behavior and may need to leave if children cannot remain seated and quiet."
+            }
+        },
+        technical_questions: {
+            lava_composition: {
+                question: "What is the lava made of?",
+                answer: "We melt tephra from the 1918 Katla eruption. It is basaltic volcanic glass, containing 47% Silica, 14% Iron, 9% Calcium, 13% Aluminum, 4% Titanium, 5% Magnesium, 3% Sodium."
+            },
+            gases: {
+                question: "Does the lava produce toxic gases?",
+                answer: "The lava erupted over 100 years ago and has lost all gases. When melted onto ice, it produces only water vapor. We have excellent air conditioning and regularly test air quality."
+            },
+            temperature: {
+                question: "Why heat to 1100°C?",
+                answer: "While lava melts at 900°C, we heat to 1100°C to achieve the right viscosity for demonstrating natural lava flow. This temperature matches what you'd see in nature."
+            },
+            cleaning: {
+                question: "How do you clean up the lava?",
+                answer: "We use a pitchfork and steel bucket to break up and collect the lava after each show. The lava is then reused in subsequent shows. The steel slide's expansion and lava's contraction make cleanup relatively easy."
             }
         },
         accessibility: {
-            tagline: "Sky Lagoon welcomes everyone to experience the healing powers of geothermal waters",
-            description: "From the beginning, Sky Lagoon has prioritized accessibility, ensuring that our facilities welcome all guests with warmth and consideration",
-            features: [
-                "Full wheelchair accessibility throughout the facility",
-                "Modern chairlift for safe lagoon entry and exit",
-                "Accessible changing rooms with necessary support equipment",
-                "Lifts available for all ritual areas including cold pool",
-                "Trained team members ready to assist",
-                "Individual changing spaces for enhanced privacy",
-                "Gender-neutral facilities available"
+            wheelchair: {
+                question: "Do you have wheelchair access?",
+                answer: "Yes, we have wheelchair access for the Classic Show in both Reykjavik and Vik. The Premium experience in Reykjavik is not wheelchair accessible. Please email info@lavashow.com in advance to arrange assistance."
+            }
+        },
+        transportation: {
+            nearby_reykjavik: {
+                question: "What other activities are nearby in Reykjavik?",
+                answer: "Located in the Grandi Harbor District, nearby attractions include Whales of Iceland Exhibition, Reykjavík Maritime Museum, Marshall House art galleries, Valdís Ice Cream, and Omnom Chocolate Factory. The area is also a departure point for whale-watching tours."
+            }
+        }
+    },
+    special_services: {
+        popup_shows: {
+            description: "A mobile version of Lava Show using our 'traveling furnace'",
+            previous_locations: [
+                "On top of glaciers",
+                "At eruption sites",
+                "Inside dormant volcanoes",
+                "Downtown London",
+                "Boston"
             ],
-            commitment: {
-                pride_statement: "We are proud participants in Visit Iceland's Good Access Program",
-                ongoing_commitment: "We strive to continuously improve our accessibility features",
-                support: "Our team members are trained to provide warm and professional assistance"
-            }
+            note: "While the amount of lava is smaller than our showrooms, this offers a unique experience in nature. Prices vary based on project complexity."
         },
-        changing_rooms: {
-            etiquette: {
-                description: "From what to wear to hygiene practices, we take bathing culture seriously",
-                rules: [
-                    "Remove outdoor shoes before entering changing facilities",
-                    "Shower thoroughly without swimsuit before entering the lagoon",
-                    "Use designated storage for personal belongings",
-                    "Maintain a peaceful atmosphere",
-                    "Respect others' privacy and space"
-                ]
+        catering: {
+            options: [
+                {
+                    name: "Sweet Delights",
+                    type: "Light refreshments"
+                },
+                {
+                    name: "Luxury Bread and Pastries",
+                    type: "Light refreshments"
+                },
+                {
+                    name: "Pizza Party",
+                    type: "Main course"
+                },
+                {
+                    name: "Smørrebrød Canapé Style",
+                    type: "Light meal"
+                },
+                {
+                    name: "Light Finger Food",
+                    details: "6 pieces"
+                },
+                {
+                    name: "Taco & Mini-Burgers",
+                    details: "10 pieces"
+                },
+                {
+                    name: "Deluxe Finger Food + Desert",
+                    details: "15 pieces"
+                }
+            ],
+            beverages: [
+                "Beer",
+                "Red wine",
+                "White wine",
+                "Sparkling wine",
+                "Champagne",
+                "Volcano cocktail",
+                "Ginger ale",
+                "Soda",
+                "Sparkling water"
+            ],
+            note: "Drinks are not included in food package pricing"
+        }
+    },
+    seasonal_info: {
+        schedules: {
+            low_season: {
+                period: "November + December 1-22 + January 6-31",
+                show_times: "3-4 shows daily",
+                standard_times: ["13:00", "15:00", "17:00"],
+                optional_time: "19:00"
             },
-            saman_package: {
-                type: "Public changing facilities",
-                description: "Traditional Icelandic bathing facilities with complete amenities",
-                features: [
-                    "Separated facilities for comfort",
-                    "Complete shower amenities",
-                    "Secure locker system",
-                    "Fresh towels provided",
-                    "Hair dryers available"
-                ]
+            medium_season: {
+                period: "March + April (except Easter) + May + June + September",
+                show_times: "4-5 shows daily",
+                schedule: ["11:00", "13:00", "15:00", "17:00", "19:00"]
             },
-            ser_package: {
-                type: "Premium private changing facilities",
-                description: "Well-appointed private changing rooms for an elevated experience",
-                features: [
-                    "Individual changing suites",
-                    "Private shower facilities",
-                    "Premium Sky Lagoon amenities",
-                    "Enhanced privacy and comfort",
-                    "Gender-neutral facilities"
+            high_season: {
+                period: [
+                    "July",
+                    "August",
+                    "October",
+                    "Christmas & New Years (Dec 23-Jan 5)",
+                    "February",
+                    "Easter week"
                 ],
-                gender_inclusive: {
-                    description: "We want everyone to feel welcome at Sky Lagoon. No matter how you identify, you are more than welcome to use our private changing facilities.",
-                    policy: "If you don't identify as male or female or aren't comfortable within the gendered changing rooms, just let our team know and we will upgrade you to a gender neutral changing room at no extra cost."
-                }
+                show_times: "5-6 shows daily",
+                schedule: ["11:00", "13:00", "15:00", "17:00", "19:00", "21:00"]
             }
         },
-        lagoon: {
-            marketing_description: "Where the sea meets the sky - enter a journey of the senses, powered by the elements",
-            specifications: {
-                temperature: {
-                    regular: "38-40°C (100-104°F)",
-                    description: "Icelandic weather can often have a dramatic effect on the guest experience and the temperature can vary",
-                    comfort: "Maintained at optimal therapeutic temperature year-round"
+        reykjavik_note: "Reykjavík location has become extremely busy year-round with 6 showtimes almost every day. Planning to open second showroom in 2026 with shows every hour."
+    },
+
+    company_history: {
+        founding_story: {
+            inspiration: {
+                year: 2010,
+                event: "Founders Júlíus and Ragnhildur witnessed a mesmerizing lavafall during Fimmvörðuháls eruption",
+                vision: "Create opportunity for people to safely experience real flowing lava up close"
+            },
+            journey: {
+                personal_challenge: {
+                    year: 2011,
+                    event: "Two sons diagnosed with autism",
+                    impact: "Sons' tenacity inspired parents to pursue their dream"
                 },
-                depth: {
-                    maximum: "120 centimeters (47 inches)",
-                    description: "At its deepest point, the lagoon is 120 cm (3'11\" ft) deep",
-                    features: "Various depth zones for comfort and accessibility"
+                startup: {
+                    year: 2016,
+                    motivation: "Show their boys that dedication and hard work make anything possible"
                 },
-                special_features: {
-                    infinity_edge: {
-                        description: "Experience our iconic 70-metre infinity edge, where sky and sea seamlessly meet",
-                        views: [
-                            "Panoramic ocean views",
-                            "Stunning sunsets",
-                            "Possible northern lights in winter",
-                            "Midnight sun in summer"
-                        ]
+                milestones: [
+                    {
+                        year: 2018,
+                        event: "World's first live LAVA SHOW premiered in Vík",
+                        note: "Birth of third son 'Funi' (meaning 'fire' in Icelandic)"
                     },
-                    cave_area: {
-                        description: "Find your way to our cave-side bar beneath the canopy on the far edge of the lagoon"
+                    {
+                        year: 2022,
+                        event: "Opened Reykjavík location"
+                    },
+                    {
+                        year: 2024,
+                        achievement: "Received Tripadvisor Travelers' Choice Best of the Best award"
                     }
-                }
-            },
-            rules: {
-                photography: {
-                    policy: "To truly immerse in the authentic Icelandic bathing culture, we encourage you to unplug, connect with nature, and embrace the serenity of gathering in warm waters",
-                    guidelines: [
-                        "Small cameras or phones permitted for memories",
-                        "Be mindful of other guests' privacy",
-                        "No photography in changing rooms or shower areas",
-                        "Professional photography requires permission"
-                    ],
-                    device_protection: {
-                        available: true,
-                        type: "Waterproof phone cases",
-                        price: "2,500 ISK",
-                        locations: ["Reception", "Gelmir Bar"]
-                    }
-                },
-                swimming: {
-                    ocean_access: {
-                        allowed: false,
-                        explanation: "Due to safety concerns, swimming in the sea around Sky Lagoon is prohibited",
-                        alternative: "Instead, enjoy the beautiful ocean view from the lagoon, where himin and haf (sky and sea) blend together at the infinity edge"
-                    }
-                }
-            },
-            safety: {
-                hydration: {
-                    importance: "It's very important that you stay hydrated during your visit to Sky Lagoon",
-                    stations: "Drinking water fountains in changing rooms and at the lagoon",
-                    guidelines: "Regular hydration ensures you get the most out of your experience and stay healthy"
-                },
-                monitoring: {
-                    staff: "Trained team members monitor guest safety",
-                    medical: "First aid trained personnel available",
-                    support: "Special assistance available when needed"
-                }
+                ]
             }
         }
     },
 
-    transportation: {
-        location: {
-            address: "Vesturvör 44-48, 200 Kópavogur",
-            description: "Sky Lagoon is conveniently located just minutes from central Reykjavík",
-            distance: {
-                from_city: "7 kilometers from central Reykjavík",
-                drive_time: "13-15 minutes",
-                from_landmarks: {
-                    perlan: "9 minutes",
-                    hallgrimskirkja: "12 minutes",
-                    harpa: "14 minutes",
-                    bsi: "9 minutes"
+    extended_faq: {
+        technical_details: {
+            lava_science: {
+                cooling_process: {
+                    question: "How long does it take the lava to cool down?",
+                    answer: "In our show, we break up the lava to release heat energy and collect it right after each show. Without intervention, the thickest parts would take up to 2 days to cool to room temperature. In nature, cooling time varies greatly depending on volume and thickness."
+                },
+                appearance: {
+                    question: "Why is the lava shiny and black?",
+                    answer: "Quick cooling prevents crystallization, forming basaltic volcanic glass. The shine comes from silica content, while the black color is due to volcanic minerals like iron and magnesium."
+                },
+                glass_properties: {
+                    question: "Is your lava obsidian?",
+                    answer: "No, it's Tachylite, a type of volcanic glass. Unlike obsidian (70%+ silica from Rhyolite), our lava is 47% Silica from Basalt."
                 }
             },
-            positioning: {
-                description: "Located on the Kársnes peninsula in Kópavogur",
-                features: [
-                    "Oceanside location",
-                    "Stunning coastal views",
-                    "Easy access from Reykjavík"
-                ]
+            operational_details: {
+                furnace: {
+                    question: "Does the furnace run on electricity?",
+                    answer: {
+                        reykjavik: "Runs on methane from municipal food waste",
+                        vik: "Runs on propane"
+                    }
+                },
+                equipment: {
+                    question: "What is the slide/stick made of?",
+                    answer: "Made of steel with melting temperature higher than lava (1500°C). Heat doesn't travel up the rod unless left in lava for extended periods."
+                }
             }
         },
-        shuttle_service: {
-            provider: "Reykjavík Excursions",
-            bsi_service: {
-                departure_point: "BSÍ bus terminal",
-                departure_times: ["13:00", "15:00", "17:00", "19:00"],
-                timing: "Bus departs BSÍ on the hour of your booking",
-                direction: "Direct service to Sky Lagoon",
-                pickup_service: {
-                    available: true,
-                    timing: "Starts 30 minutes before your selected time",
-                    important_notes: [
-                        "Be ready and visible at designated bus stop or outside hotel",
-                        "Call +354 580 5400 if pickup hasn't arrived 20 minutes after start time",
-                        "If pickup is missed, must reach BSÍ at own cost before departure time"
-                    ],
-                    restrictions: "Drop-off may be limited due to street closures and city centre bus restrictions"
+        historical_info: {
+            katla_eruption: {
+                question: "How long did the 1918 Katla eruption last?",
+                answer: "24 days, producing a massive glacial outburst flood (Jökulhlaup) that extended Iceland's coastline by about 5km/3 miles."
+            },
+            safety_protocols: {
+                reykjavik: {
+                    question: "Is there an evacuation plan for Reykjavík?",
+                    answer: "We follow Civil Defence instructions. Eruptions would likely only affect parts of the city, with boat or plane evacuation possible if needed."
+                },
+                vik: {
+                    question: "What about evacuation plans for Vík?",
+                    answer: "Well-prepared evacuation processes in place, with careful monitoring by Icelandic Meteorological Office."
+                }
+            }
+        }
+    },
+    travel_sector: {
+        partner_policies: {
+            commission_rates: {
+                standard: {
+                    rate: "15-18%",
+                    note: "Most partners fall into this range"
+                },
+                bokun: {
+                    rate: "20%",
+                    platform: "Bókun marketplace",
+                    benefits: [
+                        "Direct availability checking",
+                        "Immediate booking confirmation",
+                        "Automated process"
+                    ]
+                },
+                agent_platform: {
+                    rate: "20%",
+                    requirements: "Few weeks implementation time",
+                    note: "Available for frequent partners"
+                },
+                manual_bookings: {
+                    rate: "15%",
+                    note: "For email and phone bookings due to additional manual work"
                 }
             },
-            return_service: {
-                departure_point: "Sky Lagoon",
-                destination: "BSÍ bus terminal",
-                departure_times: [
-                    "14:30", "15:30", "16:30", "17:30", 
-                    "18:30", "19:30", "20:30", "21:30"
+            payment_terms: {
+                invoice_timing: "Sent on travel date",
+                payment_deadline: "15 days after travel date",
+                past_due: "30 days after travel date",
+                example: "Travel date Jan 1, payment date Jan 15, past due Jan 30"
+            }
+        },
+        industry_benefits: {
+            complimentary_tickets: {
+                eligibility: "Travel sector professionals",
+                requirements: [
+                    "Request from work email",
+                    "1-2 business days advance notice",
+                    "Include preferred date and time"
                 ]
             },
-            booking: {
-                methods: [
-                    "Book with Sky Lagoon ticket purchase",
-                    "Book separately through www.re.is"
-                ],
-                modifications: "Contact Reykjavík Excursions directly for changes"
+            companion_discounts: {
+                discount: "20% off",
+                eligibility: "Family members and friends of travel sector professionals"
             }
         },
-        public_transport: {
-            description: "Sky Lagoon is accessible via public bus service",
-            bus_route: {
-                first_leg: {
-                    bus: "Take bus #4",
-                    from: "Hlemmur square",
-                    to: "Hamraborg",
-                    duration: "15 minutes"
-                },
-                second_leg: {
-                    bus: "Transfer to bus #35",
-                    stop: "Exit at Hafnarbraut",
-                    duration: "4 minutes"
-                },
-                final_leg: {
-                    description: "Short walk along ocean to Sky Lagoon",
-                    duration: "Approximately 10 minutes"
-                },
-                schedule: "Visit straeto.is for current timings"
+        tour_guides: {
+            foc_policy: {
+                description: "Free entrance for tour leaders and guides",
+                conditions: "Subject to availability, approved upon arrival"
             }
-        },
-        parking: {
-            available: true,
-            cost: "Free of charge",
-            time_limit: "No time restrictions",
-            features: [
-                "Ample parking spaces",
-                "Electric car charging stations",
-                "Well-lit area",
-                "Easy access to facility entrance"
-            ],
-            accessibility: {
-                disabled_spaces: true,
-                location: "Near main entrance",
-                features: "Wide, accessible spaces"
-            }
-        },
-        airport_transfer: {
-            distance: "45 minutes from Keflavík International Airport",
-            driving: {
-                duration: "Approximately 40 minutes by taxi or rental car",
-                route: "Direct route via main roads"
-            },
-            bus_option: {
-                steps: [
-                    "From Keflavík airport, take bus no. 55 and stop at Hlemmur (57 min)",
-                    "From there, take bus no.1 to Hamraborg (21 min)",
-                    "Then take bus no. 35 to Hafnarbraut (4 min)"
-                ],
-                note: "Currently, Flybus transfers do not travel directly to Sky Lagoon from the airport",
-                alternatives: "Transfer to central Reykjavík first"
-            },
-            luggage: {
-                storage: "Available for small fee (990 ISK)",
-                location: "At reception"
-            }
-        },
-        eco_friendly_options: {
-            description: "We encourage environmentally friendly transport options",
-            options: [
-                "Walking paths along the ocean",
-                "Cycling routes available",
-                "Public transportation",
-                "Electric car charging stations"
-            ]
         }
     },
 
     group_bookings: {
-        overview: {
-            description: "Wellness, together - experience Sky Lagoon as a group",
-            minimum_size: 10,
-            tagline: "Recharge, reconnect and be inspired where the sea meets the sky",
-            contact: {
-                email: "reservations@skylagoon.is",
-                response_time: "Within 24 hours"
-            }
-        },
-        booking_process: {
-            steps: [
-                "Contact us via email with your group size and preferred date",
-                "Receive your customized group package options",
-                "Confirm your booking with full payment",
-                "Receive confirmation and group visit details"
-            ],
-            requirements: {
-                payment: "Full payment required to confirm group reservation",
-                minimum_notice: "Based on group size, from 72 hours to 12 weeks"
-            }
-        },
-        cancellation_policies: {
-            size_11_25: {
-                notice: "72 hours",
-                refund: "Full refund available with proper notice"
-            },
-            size_26_50: {
-                notice: "96 hours",
-                refund: "Full refund available with proper notice"
-            },
-            size_51_100: {
-                notice: "2 weeks",
-                refund: "Full refund available with proper notice"
-            },
-            size_101_plus: {
-                notice: "12 weeks",
-                refund: "Full refund available with proper notice"
-            }
-        },
-        amenities: {
-            standard: [
-                "Access to our geothermal lagoon",
-                "Our signature Skjól ritual",
-                "Changing facilities",
-                "Towels included",
-                "Access to our in-water Gelmir Bar"
-            ],
-            optional_additions: [
-                "Private changing areas (subject to availability)",
-                "Food and beverage packages",
-                "Transportation arrangements",
-                "Extended visit duration"
-            ]
-        },
-        ideal_for: [
-            "Corporate events",
-            "Team building",
-            "Special celebrations",
+        target_groups: [
+            "Student groups for geology education",
+            "Family groups",
+            "Corporate groups",
             "Tour groups",
-            "Wellness retreats"
-        ]
-    },
-
-    multi_pass: {
-        overview: {
-            description: "A wellness program offering six visits to Sky Lagoon",
-            validity: "Valid for 4 years from purchase date",
-            restrictions: [
-                "Valid for one visitor only",
-                "Cannot be used for groups",
-                "Non-transferable between guests",
-                "Same code used for all six visits"
-            ]
-        },
-        types: {
-            hefd: {
-                name: "Hefð Multi-Pass",
-                type: "Premium package",
-                price: "44,970 ISK",
-                visits: 6,
-                includes: [
-                    "Six Sér package visits",
-                    "Sky Lagoon admission",
-                    "Skjól ritual access",
-                    "Private changing facilities"
-                ],
-                features: "Premium experience with private facilities"
-            },
-            venja: {
-                name: "Venja Multi-Pass",
-                type: "Classic package",
-                price: "35,970 ISK",
-                visits: 6,
-                includes: [
-                    "Six Saman package visits",
-                    "Sky Lagoon admission",
-                    "Skjól ritual access",
-                    "Public changing facilities"
-                ],
-                features: "Classic experience with standard facilities"
-            }
-        },
-        redemption: {
-            process: [
-                "Plan visit by choosing date and time",
-                "Enter Multi-Pass code during booking",
-                "Receive confirmation email with ticket",
-                "Present ticket and photo ID at check-in"
-            ],
-            booking_steps: {
-                step1: {
-                    name: "Plan the Visit",
-                    description: "Book your visit in advance by selecting date and time"
-                },
-                step2: {
-                    name: "Complete the Booking",
-                    description: "Enter your Multi-Pass code during checkout"
-                },
-                step3: {
-                    name: "Check-in",
-                    description: "Present email ticket and photo ID at Sky Lagoon"
+            "Educational institutions"
+        ],
+        facilities_capacity: {
+            reykjavik: {
+                total_capacity: "118 seats",
+                premium_lounge: {
+                    capacity: "32 seats",
+                    usage: "Can be rented for private groups and events"
                 }
             },
-            important_notes: [
-                "Same code used for all six visits",
-                "Advance booking recommended",
-                "Photo ID required at check-in",
-                "Booking subject to availability"
-            ]
+            vik: {
+                current_capacity: "50 seats",
+                expansion: {
+                    new_capacity: "65 seats",
+                    date: "End of January 2025"
+                }
+            }
         },
-        usage_rules: {
-            personal_use: {
-                restriction: "Valid for one person only",
-                sharing: "Cannot be shared or transferred",
-                verification: "Photo ID required to verify identity"
+        private_events: {
+            luxury_options: {
+                facility_rental: {
+                    full_facility: {
+                        capacity: "Up to 118 guests",
+                        includes: [
+                            "Access to entire facility",
+                            "Welcome area access",
+                            "Premium lounge access",
+                            "Customizable experience"
+                        ],
+                        suitable_for: [
+                            "VIP visitors",
+                            "Luxury groups",
+                            "Incentive travel",
+                            "Company events",
+                            "Staff groups"
+                        ]
+                    },
+                    premium_lounge: {
+                        capacity: "15-25 guests (max 32)",
+                        includes: [
+                            "Private lounge access",
+                            "Welcome drink",
+                            "Premium viewing area",
+                            "Backstage access"
+                        ]
+                    }
+                },
+                add_on_services: {
+                    entertainment: [
+                        "Karaoke equipment",
+                        "Extended hours until 23:00",
+                        "Meet the founders presentation",
+                        "Custom entertainment options"
+                    ],
+                    catering: {
+                        service_levels: [
+                            "Light refreshments",
+                            "Full range deluxe tasting menus",
+                            "Gourmet finger food",
+                            "Full dinner service"
+                        ],
+                        timing_options: [
+                            "Pre-show service",
+                            "Post-show service"
+                        ]
+                    }
+                }
+            }
+        },
+        popup_services: {
+            description: "Mobile lava show using traveling furnace",
+            previous_locations: [
+                "Glacier tops",
+                "Active eruption sites",
+                "Dormant volcanoes",
+                "International cities (London, Boston)"
+            ],
+            notes: [
+                "Smaller lava quantity than showroom demonstrations",
+                "Unique nature-based experiences",
+                "Premium pricing based on complexity",
+                "Highly customizable experience"
+            ],
+            suitable_for: "High-end private customers seeking unique experiences"
+        }
+    },
+    facility_features: {
+        reykjavik: {
+            show_characteristics: {
+                description: "A stunning facility where every detail has been designed to stimulate all senses",
+                storyline: "Focuses on area around Reykjavik and most catastrophic eruptions in Icelandic history",
+                focus: "Different storyline focusing on the area around Reykjavik and the most catastrophic eruptions in Icelandic history",
+                features: [
+                    "Ground floor welcome area",
+                    "Premium lounge on second floor",
+                    "Two-level viewing experience",
+                    "LAVA BAR service",
+                    "Gift shop with unique lava products"
+                ]
             },
-            validity: {
-                duration: "4 years from purchase",
-                visits: "Six total visits",
-                booking: "Subject to availability"
+            amenities: {
+                arrival: {
+                    parking: "Free parking on site",
+                    check_in: "Ground floor reception",
+                    pre_show: "Explore facility and gift store"
+                },
+                services: {
+                    beverages: {
+                        locations: ["LAVA BAR", "Premium lounge"],
+                        options: [
+                            "Warm drinks",
+                            "Cold drinks",
+                            "Alcoholic beverages"
+                        ]
+                    },
+                    taxi: "Dedicated taxi ordering machine at reception"
+                }
+            }
+        },
+        vik: {
+            show_characteristics: {
+                description: "An intimate show with unique focus on local volcanic activity",
+                storyline: "Focuses on local volcanoes, particularly Katla, with emphasis on evacuation protocols",
+                unique_feature: "Lava pours over blocks of ice, recreating the battle of ice and fire common to local volcanoes",
+                focus: "Storyline focusing on the volcanoes in the vicinity of Vik, particularly Katla volcano and local evacuation protocols"
+            },
+            amenities: {
+                services: {
+                    parking: "Free parking available",
+                    gift_shop: "On-site shop with lava products"
+                }
             }
         }
     },
-};
 
-// Enhanced getRelevantKnowledge function
-export const getRelevantKnowledge = (userMessage) => {
-    const message = userMessage.toLowerCase();
-    let relevantInfo = [];
-
-// Opening hours and timing
-    if (message.includes('open') || 
-        message.includes('hour') || 
-        message.includes('time') ||
-        message.includes('close') ||
-        message.includes('slot') ||
-        message.includes('when') ||
-        message.includes('schedule') ||
-        // Adding specific time-related queries
-        message.includes('opening') ||
-        message.includes('closing') ||
-        message.includes('early') ||
-        message.includes('late') ||
-        message.includes('winter hours') ||
-        message.includes('summer hours') ||
-        message.includes('weekend') ||
-        message.includes('weekday') ||
-        message.includes('saturday') ||
-        message.includes('sunday') ||
-        message.includes('monday') ||
-        message.includes('tuesday') ||
-        message.includes('wednesday') ||
-        message.includes('thursday') ||
-        message.includes('friday') ||
-        // Holiday specific
-        message.includes('holiday') ||
-        message.includes('christmas') ||
-        message.includes('new year') ||
-        message.includes('december 24') ||
-        message.includes('december 25') ||
-        message.includes('december 26') ||
-        message.includes('december 31') ||
-        message.includes('january 1') ||
-        // Time of day
-        message.includes('morning') ||
-        message.includes('evening') ||
-        message.includes('afternoon') ||
-        message.includes('night') ||
-        message.includes('tonight') ||
-        message.includes('today') ||
-        message.includes('tomorrow') ||
-        // Venue-specific queries
-        message.includes('ritual closing') ||
-        message.includes('bar closing') ||
-        message.includes('gelmir') ||
-        message.includes('cafe hour') ||
-        message.includes('café hour') ||
-        message.includes('keimur') ||
-        message.includes('smakk') ||
-        // Seasonal and monthly queries
-        (message.includes('season') && (
-            message.includes('time') || 
-            message.includes('hour') || 
-            message.includes('open') || 
-            message.includes('close')
-        )) ||
-        message.includes('june') ||
-        message.includes('july') ||
-        message.includes('august') ||
-        message.includes('september') ||
-        message.includes('october') ||
-        message.includes('november') ||
-        message.includes('december') ||
-        message.includes('january') ||
-        message.includes('february') ||
-        message.includes('march') ||
-        message.includes('april') ||
-        message.includes('may') ||
-        // Common website phrases and questions
-        message.includes('visit hour') ||
-        message.includes('operating hour') ||
-        message.includes('business hour') ||
-        message.includes('what time do you') ||
-        message.includes('how late') ||
-        message.includes('how early') ||
-        message.includes('until when') ||
-        // Service timing questions
-        message.includes('kitchen') ||
-        message.includes('food service') ||
-        message.includes('last order') ||
-        message.includes('stop serving') ||
-        message.includes('when can i order') ||
-        // Check-in and arrival
-        message.includes('arrive') ||
-        message.includes('arrival') ||
-        message.includes('check in') ||
-        message.includes('check-in') ||
-        message.includes('get there')) {
-
-        // Add opening hours info
-        relevantInfo.push({
-            type: 'opening_hours',
-            content: knowledgeBase.opening_hours
-        });
-
-        // If query is about dining venues, also include dining info
-        if (message.includes('bar') || 
-            message.includes('cafe') || 
-            message.includes('café') || 
-            message.includes('smakk') || 
-            message.includes('keimur') ||
-            message.includes('gelmir') ||
-            message.includes('food') ||
-            message.includes('drink') ||
-            message.includes('dining') ||
-            message.includes('kitchen') ||
-            message.includes('last order') ||
-            message.includes('restaurant')) {
-            relevantInfo.push({
-                type: 'dining',
-                content: knowledgeBase.dining
-            });
+    show_technical_details: {
+        lava_process: {
+            preparation: {
+                initial_heating: {
+                    time: "5 hours for first show",
+                    temperature: "1100°C (2000°F)",
+                    reason: "Achieve optimal viscosity for natural flow demonstration"
+                },
+                subsequent_shows: {
+                    time: "1.5-2 hours between shows",
+                    note: "Faster due to maintained furnace temperature"
+                }
+            },
+            safety_systems: {
+                air_management: {
+                    features: [
+                        "Advanced air conditioning",
+                        "Heat extraction systems",
+                        "Regular air quality testing"
+                    ]
+                },
+                protective_measures: {
+                    audience: "Security goggles provided",
+                    viewing_distance: "Carefully calculated safe distance",
+                    facility: "Purpose-built viewing areas"
+                }
+            },
+            sustainability: {
+                lava_reuse: {
+                    process: [
+                        "Lava collected after each show",
+                        "Broken into manageable pieces",
+                        "Returned to furnace",
+                        "Remelted for next show"
+                    ],
+                    benefits: [
+                        "Environmentally conscious",
+                        "Resource efficient",
+                        "Maintains consistent quality"
+                    ]
+                },
+                energy_sources: {
+                    reykjavik: {
+                        type: "Methane",
+                        source: "Municipal food waste",
+                        sustainability: "Environmentally friendly energy source"
+                    },
+                    vik: {
+                        type: "Propane",
+                        efficiency: "Optimized for smaller show volume"
+                    }
+                }
+            },
+            material_properties: {
+                composition: {
+                    type: "Basaltic tephra",
+                    source: "1918 Katla eruption",
+                    form: "Volcanic glass (Tachylite)"
+                },
+                physical_characteristics: {
+                    cooling_process: {
+                        standard: "Up to 2 days for thick sections",
+                        show_setting: "Accelerated through breaking process",
+                        result: "Unique volcanic glass formation"
+                    },
+                    appearance: {
+                        color: "Black due to mineral content",
+                        texture: "Shiny due to rapid cooling",
+                        unique_properties: "Different from obsidian due to lower silica content"
+                    }
+                }
+            }
         }
-
-        // If query is about ritual times, also include ritual info
-        if (message.includes('ritual') || 
-            message.includes('skjol') || 
-            message.includes('skjól') ||
-            message.includes('seven step') ||
-            message.includes('7 step')) {
-            relevantInfo.push({
-                type: 'ritual',
-                content: knowledgeBase.ritual
-            });
+    },
+    educational_program: {
+        show_content: {
+            core_elements: {
+                scientific_focus: {
+                    topics: [
+                        "Icelandic volcanism",
+                        "Lava behavior in nature",
+                        "Geological processes",
+                        "Local volcanic history"
+                    ],
+                    presentation: "Expert lava master of ceremonies provides educational commentary"
+                },
+                location_specific: {
+                    reykjavik: {
+                        focus: "Catastrophic eruptions in Icelandic history",
+                        regional_context: "Volcanic activity around Reykjavík",
+                        historical_significance: "Impact on urban development"
+                    },
+                    vik: {
+                        focus: "Katla volcano and local volcanic systems",
+                        safety_protocols: "Community evacuation procedures",
+                        geographical_context: "UNESCO Global Geopark setting"
+                    }
+                }
+            },
+            interactive_elements: {
+                qa_session: "Open question and answer period with expert host",
+                demonstration: "Live lava pouring and behavior observation",
+                sensory_experience: [
+                    "See molten lava flow",
+                    "Feel intense heat radiation",
+                    "Hear lava movement",
+                    "Experience rapid cooling process"
+                ]
+            }
+        },
+        target_audiences: {
+            students: {
+                description: "Ultimate geology class experience",
+                suitability: "Highly educational for school groups"
+            },
+            families: {
+                age_considerations: {
+                    recommended: "Ages 5+",
+                    note: "Show includes substantial English language content",
+                    guidance: "Parents responsible for child behavior during show"
+                }
+            },
+            scientific_community: "Unique opportunity to observe controlled lava behavior"
         }
+    },
 
-        // If query mentions check-in or arrival, also include booking info
-        if (message.includes('arrive') ||
-            message.includes('arrival') ||
-            message.includes('check in') ||
-            message.includes('check-in') ||
-            message.includes('get there')) {
-            relevantInfo.push({
-                type: 'transportation',
-                content: knowledgeBase.transportation
-            });
+    show_scheduling: {
+        regular_timings: {
+            reykjavik: {
+                standard_slots: [
+                    "10:00", "12:00", "14:00",
+                    "16:00", "18:00", "20:00"
+                ],
+                notes: [
+                    "Six shows daily most of the year",
+                    "10am show may be skipped in December 1-20 and April-May"
+                ],
+                future_plans: "Second showroom planned for 2026 enabling hourly shows"
+            },
+            vik: {
+                standard_slots: [
+                    "13:00", "15:00", "17:00"
+                ],
+                additional_slots: [
+                    "11:00", "19:00", "21:00"
+                ],
+                note: "Additional times based on season and demand"
+            }
+        },
+        seasonal_variations: {
+            low_season: {
+                period: "November, December 1-22, January 6-31",
+                minimum_shows: "3-4 daily",
+                base_schedule: ["13:00", "15:00", "17:00", "19:00"]
+            },
+            medium_season: {
+                period: "March, April (except Easter), May, June, September",
+                shows: "4-5 daily",
+                schedule: ["11:00", "13:00", "15:00", "17:00", "19:00"]
+            },
+            peak_season: {
+                period: [
+                    "July",
+                    "August",
+                    "October",
+                    "Christmas & New Years (Dec 23-Jan 5)",
+                    "February",
+                    "Easter week"
+                ],
+                shows: "5-6 daily",
+                full_schedule: [
+                    "11:00", "13:00", "15:00",
+                    "17:00", "19:00", "21:00"
+                ]
+            }
+        },
+        arrival_guidelines: {
+            standard: {
+                arrival_time: "20 minutes before show time",
+                check_in: "At main reception desk",
+                late_policy: {
+                    grace_period: "Up to 10-13 minutes after start",
+                    note: "Subject to show conditions"
+                }
+            },
+            premium_experience: {
+                arrival_time: "30 minutes before show time",
+                reason: "Enjoy lounge access and welcome drink",
+                activities: [
+                    "Check in at reception",
+                    "Access premium lounge",
+                    "Receive welcome drink",
+                    "Explore lava displays",
+                    "Select premium viewing seats"
+                ]
+            }
+        }
+    },
+    marketing_highlights: {
+        unique_selling_points: {
+            exclusivity: "The only live lava show in the world",
+            recognition: [
+                "2024 Tripadvisor Best of the Best award",
+                "Multiple innovation awards",
+                "Educational and cultural value recognition"
+            ],
+            experience_value: "One of the highest rated attractions in Iceland",
+            authenticity: {
+                material: "Real lava from 1918 Katla eruption",
+                demonstration: "Live volcanic eruption recreation",
+                cultural: "Deep connection to Icelandic geological heritage"
+            }
+        },
+        visitor_experience: {
+            sensory_elements: [
+                "See molten lava up close",
+                "Feel intense heat radiation",
+                "Experience rapid cooling process",
+                "Witness unique glass formation",
+                "Interactive demonstration"
+            ],
+            educational_value: {
+                description: "Edutainment at its best",
+                elements: [
+                    "Expert presentation",
+                    "Volcanic science explanation",
+                    "Cultural significance",
+                    "Interactive Q&A sessions",
+                    "Real-world geology demonstration"
+                ]
+            }
+        },
+        reviews: {
+            platforms: {
+                google: {
+                    reykjavik: "Google reviews for Reykjavik experience",
+                    vik: "Google reviews for Vík experience"
+                },
+                tripadvisor: {
+                    reykjavik: "Tripadvisor reviews for Reykjavik experience",
+                    vik: "Tripadvisor reviews for Vík location"
+                }
+            },
+            key_highlights: [
+                "World-class immersive experience",
+                "Educational value",
+                "Professional presentation",
+                "Unique attraction",
+                "Family-friendly entertainment"
+            ]
+        }
+    },
+
+    safety_protocols: {
+        operational_safety: {
+            temperature_control: {
+                monitoring: "Constant temperature monitoring",
+                maximum: "1100°C (2000°F)",
+                safety_margins: "Carefully calculated viewing distances"
+            },
+            protective_equipment: {
+                viewers: "Safety goggles provided",
+                staff: "Specialized heat-resistant equipment",
+                facility: "Purpose-built demonstration areas"
+            },
+            air_quality: {
+                measures: [
+                    "Regular air quality testing",
+                    "Advanced ventilation systems",
+                    "Heat extraction technology",
+                    "Steam management"
+                ],
+                monitoring: "Continuous environmental assessment"
+            }
+        },
+        emergency_procedures: {
+            staff_training: {
+                requirements: "All staff trained in safety protocols",
+                competencies: [
+                    "Emergency response",
+                    "Crowd management",
+                    "First aid",
+                    "Equipment operation"
+                ]
+            },
+            evacuation: {
+                reykjavik: {
+                    protocol: "Coordinated with Civil Defence",
+                    options: ["Land", "Sea", "Air evacuation routes"]
+                },
+                vik: {
+                    protocol: "Integrated with Katla evacuation plans",
+                    monitoring: "Coordinated with Icelandic Meteorological Office"
+                }
+            }
+        },
+        visitor_safety: {
+            guidelines: [
+                "Follow staff instructions",
+                "Remain in designated viewing areas",
+                "Wear provided safety equipment",
+                "Maintain safe distance from demonstration area"
+            ],
+            children_policy: {
+                age_restrictions: {
+                    minimum: "No strict minimum for Classic Experience",
+                    premium: "13+ years for Premium Experience"
+                },
+                supervision: "Parents responsible for child behavior",
+                note: "May need to leave if children cannot remain seated"
+            }
+        },
+        facility_safety: {
+            design_features: [
+                "Purpose-built viewing areas",
+                "Heat-resistant materials",
+                "Emergency exits",
+                "Ventilation systems"
+            ],
+            maintenance: {
+                schedule: "Regular safety inspections",
+                equipment: "Continuous monitoring of all safety systems",
+                documentation: "Detailed safety records maintained"
+            }
+        }
+    },
+    operational_details: {
+        show_preparation: {
+            lava_heating: {
+                first_show: {
+                    duration: "5 hours to reach 1100°C",
+                    process: "Complete heating from room temperature",
+                    timing: "Early morning preparation"
+                },
+                subsequent_shows: {
+                    duration: "1.5-2 hours between shows",
+                    efficiency: "Faster due to maintained furnace temperature",
+                    process: "Reheating previously used lava"
+                }
+            },
+            maintenance: {
+                cleanup: {
+                    process: [
+                        "Break up cooled lava",
+                        "Collection using steel tools",
+                        "Return to furnace for reuse",
+                        "Preparation for next show"
+                    ],
+                    timing: "Immediate post-show cleanup",
+                    equipment: {
+                        tools: ["Steel pitchfork", "Steel bucket"],
+                        features: "Heat-resistant materials",
+                        efficiency: "Quick cleanup due to lava properties"
+                    }
+                }
+            }
+        },
+        sustainability_practices: {
+            material_use: {
+                lava_recycling: {
+                    method: "Continuous reuse of lava material",
+                    benefits: [
+                        "Resource efficient",
+                        "Consistent quality",
+                        "Minimal waste"
+                    ]
+                },
+                energy_sources: {
+                    reykjavik: {
+                        type: "Methane from municipal waste",
+                        sustainability: "Utilizing local food waste",
+                        environmental_impact: "Reduced carbon footprint"
+                    },
+                    vik: {
+                        type: "Propane system",
+                        efficiency: "Optimized for smaller venue"
+                    }
+                }
+            }
+        },
+        visitor_flow: {
+            classic_experience: {
+                arrival: {
+                    timing: "20 minutes before show",
+                    process: [
+                        "Check-in at reception",
+                        "Explore facility",
+                        "Visit gift shop",
+                        "Optional drink purchase",
+                        "Safety briefing"
+                    ]
+                },
+                show_sequence: [
+                    "Educational introduction",
+                    "Volcanic history film",
+                    "Live lava demonstration",
+                    "Interactive Q&A session"
+                ]
+            },
+            premium_experience: {
+                arrival: {
+                    timing: "30 minutes before show",
+                    process: [
+                        "Ground floor check-in",
+                        "Premium lounge access",
+                        "Welcome drink service",
+                        "Exhibition viewing",
+                        "Premium seating selection"
+                    ]
+                },
+                additional_features: [
+                    "Balcony viewing position",
+                    "Enhanced heat experience",
+                    "Backstage tour",
+                    "Lava gift package"
+                ]
+            }
+        }
+    },
+    
+    extended_visitor_info: {
+        accessibility: {
+            wheelchair_access: {
+                reykjavik: {
+                    classic: "Full wheelchair accessibility",
+                    premium: "Not wheelchair accessible",
+                    note: "Advance notice requested"
+                },
+                vik: {
+                    access: "Wheelchair accessible venue",
+                    requirements: "Contact in advance for assistance"
+                }
+            },
+            languages: {
+                current: "Shows conducted in English",
+                future: "Real-time translation planned for late 2025"
+            }
+        },
+        local_area: {
+            reykjavik: {
+                district: "Grandi Harbour District",
+                nearby_attractions: [
+                    {
+                        name: "Whales of Iceland Exhibition",
+                        type: "Natural history"
+                    },
+                    {
+                        name: "Reykjavík Maritime Museum",
+                        type: "Cultural"
+                    },
+                    {
+                        name: "Marshall House",
+                        type: "Art galleries"
+                    },
+                    {
+                        name: "Valdís Ice Cream",
+                        type: "Local favorite"
+                    },
+                    {
+                        name: "Omnom Chocolate Factory",
+                        type: "Food tourism"
+                    }
+                ],
+                activities: [
+                    "Whale watching tours",
+                    "Harbor walks",
+                    "Cultural exploration",
+                    "Local dining"
+                ]
+            },
+            vik: {
+                location: "South Coast of Iceland",
+                features: [
+                    "Next to Black Beach",
+                    "Katla UNESCO Global Geopark",
+                    "Surrounded by volcanoes and glaciers"
+                ],
+                distance: "190km from Reykjavík"
+            }
+        }
+    },
+    future_developments: {
+        facility_expansions: {
+            reykjavik: {
+                second_showroom: {
+                    planned_date: "2026",
+                    features: [
+                        "Shows every hour",
+                        "Increased capacity",
+                        "Enhanced visitor flow"
+                    ],
+                    reason: "Meeting growing year-round demand"
+                },
+                current_status: "Operating at high capacity with 6 shows daily",
+                current_updates: {
+                    schedule: "Adding 21:00 showtime during highest summer season",
+                    capacity: "Operating at high capacity with 6 shows daily"
+                }
+            },
+            vik: {
+                capacity_increase: {
+                    current: "50-55 seats",
+                    planned: "65 seats",
+                    implementation: "End of January 2025"
+                }
+            },
+            language_services: {
+                planned: "Real-time translation system",
+                implementation: "Late 2025",
+                goal: "Enhanced accessibility for international visitors"
+            }
+        }
+    },
+
+    special_events: {
+        private_shows: {
+            premium_lounge: {
+                capacity: {
+                    optimal: "15-25 people",
+                    maximum: "32 people"
+                },
+                included_features: [
+                    "Exclusive lounge access",
+                    "Welcome aperitif",
+                    "Lava show souvenir",
+                    "Premium balcony seating",
+                    "Backstage tour"
+                ],
+                customization_options: {
+                    duration: "Extended hours until 23:00",
+                    entertainment: [
+                        "Karaoke equipment rental",
+                        "Founder presentations",
+                        "Custom entertainment"
+                    ],
+                    catering: {
+                        food_options: [
+                            "Light refreshments",
+                            "Full tasting menus",
+                            "Gourmet finger food",
+                            "Custom menus"
+                        ],
+                        beverage_service: {
+                            alcoholic: [
+                                "Beer selection",
+                                "Wine options",
+                                "Champagne",
+                                "Custom cocktails"
+                            ],
+                            non_alcoholic: [
+                                "Soft drinks",
+                                "Specialty beverages",
+                                "Hot drinks"
+                            ]
+                        }
+                    },
+                    staffing: "Dedicated bar service staff"
+                }
+            },
+            full_facility: {
+                capacity: "Up to 118 people",
+                spaces_included: [
+                    "Ground floor welcome area",
+                    "Premium lounge",
+                    "Main showroom",
+                    "All facility amenities"
+                ],
+                suitable_for: [
+                    "Corporate events",
+                    "Large private groups",
+                    "Special celebrations",
+                    "VIP experiences",
+                    "Luxury tour groups"
+                ],
+                customization_options: {
+                    presentations: "Founder meet-and-greet",
+                    timing: "Flexible scheduling",
+                    catering: "Full-service options",
+                    entertainment: "Custom programming"
+                }
+            }
+        },
+        popup_shows: {
+            description: "Mobile lava demonstration using traveling furnace",
+            unique_features: [
+                "Portable setup",
+                "Location flexibility",
+                "Customizable experience"
+            ],
+            past_locations: [
+                {
+                    type: "Natural settings",
+                    examples: [
+                        "Glacier tops",
+                        "Eruption sites",
+                        "Dormant volcanoes"
+                    ]
+                },
+                {
+                    type: "International venues",
+                    examples: [
+                        "Downtown London",
+                        "Boston"
+                    ]
+                }
+            ],
+            considerations: {
+                lava_volume: "Smaller than showroom demonstrations",
+                pricing: "Premium pricing based on complexity",
+                target_market: "High-end private clients",
+                logistics: "Requires special setup and safety measures"
+            }
+        }
+    },
+    technical_specifications: {
+        lava_science: {
+            material_properties: {
+                composition: {
+                    origin: "1918 Katla eruption basaltic tephra",
+                    elements: {
+                        silica: "47%",
+                        iron: "14%",
+                        calcium: "9%",
+                        aluminum: "13%",
+                        titanium: "4%",
+                        magnesium: "5%",
+                        sodium: "3%"
+                    },
+                    classification: {
+                        type: "Tachylite (volcanic glass)",
+                        comparison: "Different from obsidian (70%+ silica)"
+                    }
+                },
+                behavior: {
+                    melting_requirements: {
+                        minimum: "900°C for initial melting",
+                        optimal: "1100°C for proper flow viscosity",
+                        reason: "Matches natural volcanic flow conditions"
+                    },
+                    cooling_process: {
+                        show_setting: {
+                            method: "Active breaking and collection",
+                            timing: "Immediate post-show processing",
+                            result: "Rapid cooling for reuse"
+                        },
+                        natural_process: {
+                            thick_sections: "Up to 2 days to room temperature",
+                            factors: [
+                                "Volume dependent",
+                                "Insulation effects",
+                                "Environmental conditions"
+                            ]
+                        }
+                    }
+                },
+                gas_properties: {
+                    common_gases: [
+                        "Sulfur dioxide",
+                        "Hydrogen sulfide", 
+                        "Carbon dioxide",
+                        "Carbon monoxide",
+                        "Hydrogen fluoride"
+                    ],
+                    safety: {
+                        status: "No gas risk present",
+                        explanation: "Historic material has lost all gases over time",
+                        verification: "Regular air quality testing performed"
+                    }
+                },
+                crystallization: {
+                    show_process: "Rapid cooling produces volcanic glass",
+                    natural_process: "Slower cooling in nature leads to rock formation",
+                    comparison: "Demonstrates different cooling effects on lava"
+                }
+            },
+            equipment_specifications: {
+                furnace_systems: {
+                    reykjavik: {
+                        fuel: "Methane from municipal waste",
+                        sustainability: "Environmentally conscious design",
+                        capacity: "Larger volume for main facility"
+                    },
+                    vik: {
+                        fuel: "Propane system",
+                        design: "Optimized for smaller show volume"
+                    },
+                    heating_times: {
+                        initial: "5 hours from cold",
+                        between_shows: "1.5-2 hours"
+                    }
+                },
+                handling_equipment: {
+                    materials: "High-grade steel",
+                    temperature_resistance: "Above 1500°C",
+                    components: [
+                        "Lava slide",
+                        "Collection tools",
+                        "Manipulation rods"
+                    ]
+                }
+            }
+        },
+        safety_systems: {
+            environmental_controls: {
+                air_management: {
+                    features: [
+                        "Advanced ventilation",
+                        "Heat extraction",
+                        "Steam control",
+                        "Air quality monitoring"
+                    ],
+                    testing: "Regular air quality assessments"
+                },
+                viewing_area_design: {
+                    safety_features: [
+                        "Calculated viewing distances",
+                        "Heat-resistant barriers",
+                        "Protected observation zones"
+                    ],
+                    protective_equipment: {
+                        audience: "Safety goggles provided",
+                        staff: "Full heat-protection gear"
+                    }
+                }
+            }
+        }
+    },
+    
+    educational_materials: {
+        volcanic_science: {
+            basic_concepts: {
+                lava_formation: {
+                    natural_process: "Molten rock reaching Earth's surface",
+                    show_recreation: "Controlled melting of basaltic material",
+                    temperature_comparison: {
+                        natural: "700-1200°C typical range",
+                        show: "1100°C controlled environment"
+                    }
+                },
+                glass_formation: {
+                    process: "Rapid cooling prevents crystallization",
+                    result: "Formation of volcanic glass",
+                    types: {
+                        show_production: "Tachylite (basaltic glass)",
+                        natural_comparison: "Obsidian (rhyolitic glass)"
+                    }
+                }
+            },
+            iceland_specific: {
+                geological_context: {
+                    location: "Mid-Atlantic Ridge",
+                    significance: "Active volcanic zone",
+                    historical_events: {
+                        katla_1918: {
+                            duration: "24 days",
+                            impact: "Coastline extension by 5km",
+                            legacy: "Source material for show"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    customer_service_protocols: {
+        contact_channels: {
+            main_contacts: {
+                phone: {
+                    main: "+354 553 0005",
+                    reykjavik: "+354 868 6005",
+                    vik: "+354 835 6777",
+                    extra: "+354 857 6005"
+                },
+                email: "info@lavashow.com",
+                response_times: {
+                    email: "Within 24 hours",
+                    phone: "During operating hours"
+                }
+            },
+            specialized_inquiries: {
+                sales: {
+                    contact: "jon@lavashow.com",
+                    for: "Sales and marketing queries"
+                },
+                complaints: {
+                    contact: "Madison@lavashow.com",
+                    for: "Escalated issues requiring special attention"
+                }
+            }
+        },
+        booking_management: {
+            individual_bookings: {
+                preferred_method: "Direct booking through www.lavashow.com",
+                advantages: [
+                    "Real-time availability",
+                    "Immediate confirmation",
+                    "Secure payment processing"
+                ]
+            },
+            group_handling: {
+                process: "Direct email to info@lavashow.com",
+                required_info: [
+                    "Group size",
+                    "Preferred date",
+                    "Preferred time",
+                    "Special requirements"
+                ]
+            },
+            modification_procedures: {
+                rescheduling: {
+                    timing: "Subject to availability",
+                    process: "Contact via email or phone",
+                    requirements: "Original booking reference"
+                },
+                cancellations: {
+                    policy: "Full refund if cancelled within 24 hours",
+                    process: "Written request to info@lavashow.com"
+                }
+            }
+        }
+    },
+
+    booking_systems: {
+        online_platform: {
+            website: "www.lavashow.com/tickets",
+            features: {
+                real_time: {
+                    availability: "Live seat availability",
+                    pricing: "Current rates displayed",
+                    show_times: "Up-to-date schedule"
+                },
+                capacity_management: {
+                    display: {
+                        single_spot: "Shows exact number available",
+                        sold_out: "Clearly marked when full"
+                    },
+                    walk_in_policy: "Only possible if website shows availability"
+                }
+            }
+        },
+        partner_systems: {
+            bokun_marketplace: {
+                commission: "20%",
+                features: [
+                    "Direct availability checking",
+                    "Immediate booking confirmation",
+                    "Automated process"
+                ]
+            },
+            agent_platform: {
+                commission: "20%",
+                setup_time: "Few weeks implementation",
+                requirements: "Regular booking volume"
+            },
+            manual_bookings: {
+                commission: "15%",
+                note: "Lower rate due to manual processing"
+            }
+        },
+        payment_processing: {
+            terms: {
+                invoicing: {
+                    timing: "Sent on travel date",
+                    due_date: "15 days after travel date",
+                    overdue: "30 days after travel date"
+                },
+                example: {
+                    travel_date: "January 1",
+                    payment_due: "January 15",
+                    overdue_date: "January 30"
+                }
+            }
+        }
+    },
+    staff_training: {
+        safety_requirements: {
+            core_competencies: [
+                "Lava handling procedures",
+                "Emergency protocols",
+                "Safety equipment operation",
+                "Air quality monitoring",
+                "Evacuation procedures"
+            ],
+            show_operations: {
+                demonstration: "Safe lava pouring techniques",
+                audience_management: "Crowd control and positioning",
+                equipment_handling: "Proper use of safety gear"
+            }
+        },
+        customer_service: {
+            communication_standards: {
+                languages: "English proficiency required",
+                presentation: "Educational content delivery",
+                interaction: "Audience engagement protocols"
+            },
+            knowledge_requirements: {
+                geological: "Basic volcanic science",
+                historical: "Icelandic volcanic history",
+                local: {
+                    reykjavik: "Capital region volcanic impact",
+                    vik: "Katla volcano information"
+                }
+            }
+        }
+    },
+
+    seasonal_operations: {
+        peak_season_management: {
+            periods: [
+                "July and August",
+                "October",
+                "Christmas & New Years (Dec 23-Jan 5)",
+                "February",
+                "Easter week"
+            ],
+            adjustments: {
+                scheduling: "Maximum 6 shows daily",
+                staffing: "Increased personnel",
+                capacity: "Optional additional seating"
+            }
+        },
+        low_season_operations: {
+            periods: [
+                "November",
+                "December 1-22",
+                "January 6-31"
+            ],
+            modifications: {
+                scheduling: "3-4 shows daily",
+                resource_optimization: "Adjusted staff levels",
+                maintenance: "Enhanced facility upkeep period"
+            }
+        }
+    },
+    marketing_strategies: {
+        brand_positioning: {
+            unique_features: [
+                "World's only live lava show",
+                "Award-winning experience",
+                "Educational entertainment",
+                "Authentic Icelandic geology"
+            ],
+            target_audiences: {
+                tourists: "Must-visit Icelandic attraction",
+                educational_groups: "Ultimate geology class",
+                corporate: "Unique event venue",
+                luxury_market: "Premium volcanic experience"
+            },
+            promotional_messaging: {
+                taglines: [
+                    "Feel the Heat of Red-Hot Lava",
+                    "Where the sea meets the sky",
+                    "A world-class immersive experience"
+                ]
+            }
+        },
+        travel_sector_engagement: {
+            benefits: {
+                complimentary_visits: {
+                    eligibility: "Travel sector professionals",
+                    process: "Work email verification",
+                    advance_notice: "1-2 business days"
+                },
+                discounts: {
+                    rate: "20% for family and friends",
+                    application: "Must be requested in advance"
+                },
+                tour_guides: "Free entrance subject to availability"
+            },
+            partnerships: {
+                commissions: {
+                    standard: "15-18%",
+                    automated: "20% for Bókun marketplace users",
+                    platform: "20% for agent platform users"
+                }
+            }
+        },
+        gift_promotions: {
+            cards: {
+                discount_code: "LAVAGJOF",
+                savings: "10% on gift cards",
+                validity: "Until December 31, 2024"
+            }
+        }
+    },
+
+    quality_control: {
+        experience_monitoring: {
+            show_quality: {
+                checkpoints: [
+                    "Lava temperature maintenance",
+                    "Demonstration clarity",
+                    "Educational content delivery",
+                    "Safety protocol adherence",
+                    "Timing precision"
+                ],
+                feedback_collection: {
+                    methods: [
+                        "Direct customer feedback",
+                        "Online reviews monitoring",
+                        "Post-visit surveys"
+                    ]
+                }
+            },
+            facility_maintenance: {
+                daily_checks: [
+                    "Equipment functionality",
+                    "Safety systems",
+                    "Viewing areas",
+                    "Climate control",
+                    "Cleanliness standards"
+                ],
+                technical_maintenance: {
+                    furnace: "Regular performance monitoring",
+                    ventilation: "Air quality testing",
+                    safety_equipment: "Daily inspection"
+                }
+            }
+        },
+        service_standards: {
+            customer_interaction: {
+                arrival: {
+                    greeting: "Consistent welcome procedure",
+                    information: "Clear direction provision",
+                    timing: "Punctual show commencement"
+                },
+                during_show: {
+                    engagement: "Interactive presentation",
+                    safety: "Continuous monitoring",
+                    comfort: "Temperature management"
+                }
+            },
+            special_requirements: {
+                accessibility: "Advance arrangement support",
+                group_handling: "Coordinated entrance and seating",
+                premium_service: "VIP protocol adherence"
+            }
+        }
+    },
+
+    emergency_procedures: {
+        volcanic_activity: {
+            reykjavik_protocol: {
+                monitoring: "Coordination with Civil Defence",
+                evacuation_options: [
+                    "Land routes",
+                    "Maritime evacuation",
+                    "Aerial transport if needed"
+                ],
+                communication: "Clear visitor guidance"
+            },
+            vik_protocol: {
+                katla_monitoring: "Coordination with Met Office",
+                evacuation_routes: "Pre-planned escape paths",
+                staff_training: "Regular evacuation drills"
+            }
+        },
+        facility_emergencies: {
+            response_protocols: {
+                equipment_failure: "Backup systems activation",
+                medical_emergencies: "First aid procedures",
+                facility_issues: "Immediate response plans"
+            },
+            communication_chain: {
+                internal: "Staff alert system",
+                external: "Emergency services contact",
+                visitor: "Clear announcement protocols"
+            }
         }
     }
-
-    // Booking modifications and late arrivals
-    if (message.includes('change') || 
-        message.includes('modify') ||
-        message.includes('reschedule') ||
-        message.includes('late') ||
-        message.includes('delayed') ||
-        message.includes('miss') ||
-        message.includes('missed') ||
-        message.includes('different time') ||
-        message.includes('different date')) {
-        relevantInfo.push({
-            type: 'booking_modifications',
-            content: knowledgeBase.booking_modifications
-        });
-    }
-
-    // Package and pricing related
-    if (message.includes('package') ||
-        message.includes('price') ||
-        message.includes('cost') ||
-        message.includes('saman') ||
-        message.includes('ser') ||
-        message.includes('sér') ||
-        message.includes('date night') ||
-        message.includes('for two') ||
-        message.includes('couple') ||
-        message.includes('romantic') ||
-        message.includes('together') ||  // Added from website language
-        message.includes('share') ||     // Added from website language
-        message.includes('partner') ||   // Added from website language
-        message.includes('booking') ||
-        message.includes('book') ||
-        message.includes('purchase') ||
-        message.includes('buy') ||
-        message.includes('before') ||
-        message.includes('advance') ||
-        message.includes('better to') ||
-        message.includes('should i') ||
-        message.includes('recommend') ||
-        message.includes('ahead') ||
-        message.includes('reservation') ||
-        message.includes('modify') ||
-        message.includes('change') ||
-        message.includes('facilities') ||
-        message.includes('amenities') ||
-        message.includes('premium') ||
-        message.includes('standard') ||
-        message.includes('pay') ||
-        message.includes('payment') ||
-        message.includes('wristband') ||
-        message.includes('wallet') ||
-        message.includes('cash') ||
-        message.includes('available') ||
-        message.includes('availability') ||
-        message.includes('space') ||
-        message.includes('capacity') ||
-        message.includes('spot') ||
-        message.includes('full') ||
-        message.includes('slot') ||
-        message.includes('room') ||
-        message.includes('spots left') ||
-        message.includes('seats') ||
-        message.includes('space left') ||
-        message.includes('ultimate') ||
-        message.includes('discover') ||
-        message.includes('journey') ||
-        message.includes('signature') ||
-        message.includes('classic') ||
-        message.includes('popular') ||
-        message.includes('admission') ||
-        message.includes('access') ||
-        message.includes('included') ||
-        message.includes('value')) {
-        relevantInfo.push({
-            type: 'policies',
-            content: knowledgeBase.policies
-        });
-        relevantInfo.push({
-            type: 'packages',
-            content: knowledgeBase.packages
-        });
-
-        // Add dining info if they ask about food-related aspects
-        if (message.includes('platter') ||
-            message.includes('food') ||
-            message.includes('dinner') ||
-            message.includes('smakk') ||
-            message.includes('drinks included')) {
-            relevantInfo.push({
-                type: 'dining',
-                content: knowledgeBase.dining
-            });
-        }
-
-        // Add ritual info if they ask about ritual-related aspects
-        if (message.includes('ritual') ||
-            message.includes('skjol') ||
-            message.includes('skjól') ||
-            message.includes('journey')) {
-            relevantInfo.push({
-                type: 'ritual',
-                content: knowledgeBase.ritual
-            });
-        }
-    }
-
-    // Gift ticket related queries
-    if (message.includes('gift') || 
-        message.includes('present') ||
-        message.includes('gifting') ||
-        message.includes('give as') ||
-        message.includes('buy for') ||
-        message.includes('redeem') ||
-        message.includes('gift code') ||
-        message.includes('gift ticket') ||
-        message.includes('gift card') ||
-        // Special occasions
-        message.includes('birthday') ||
-        message.includes('anniversary') ||
-        message.includes('celebration') ||
-        message.includes('thank you') ||
-        message.includes('special occasion') ||
-        // Redemption related
-        message.includes('how to use') ||
-        message.includes('redeem') ||
-        message.includes('activate') ||
-        message.includes('gift voucher') ||
-        message.includes('voucher code') ||
-        // Purchasing related
-        message.includes('buy a gift') ||
-        message.includes('purchase a gift') ||
-        message.includes('get a gift') ||
-        message.includes('giving') ||
-        message.includes('gift options') ||
-        // Multi-pass specific
-        message.includes('multi-pass gift') ||
-        message.includes('multi pass gift') ||
-        message.includes('hefð gift') ||
-        message.includes('hefd gift') ||
-        message.includes('venja gift') ||
-        // For Two packages
-        (message.includes('for two') && 
-            (message.includes('gift') || 
-             message.includes('present') || 
-             message.includes('buy') || 
-             message.includes('purchase'))) ||
-        message.includes('couple gift') ||
-        message.includes('together gift') ||
-        // Common questions
-        message.includes('gift price') ||
-        message.includes('gift cost') ||
-        message.includes('gift ticket price') ||
-        message.includes('gift validity') ||
-        message.includes('gift expiry') ||
-        message.includes('book with gift') ||
-        message.includes('use my gift')) {
-
-        relevantInfo.push({
-            type: 'gift_tickets',
-            content: knowledgeBase.gift_tickets
-        });
-
-        // If asking about booking with gift tickets, also include opening hours
-        if (message.includes('book') || 
-            message.includes('redeem') || 
-            message.includes('use') || 
-            message.includes('when can i')) {
-            relevantInfo.push({
-                type: 'opening_hours',
-                content: knowledgeBase.opening_hours
-            });
-        }
-
-        // If asking about For Two packages, include dining info
-        if (message.includes('for two') || 
-            message.includes('couple') || 
-            message.includes('together') ||
-            message.includes('date night')) {
-            relevantInfo.push({
-                type: 'dining',
-                content: knowledgeBase.dining
-            });
-        }
-
-        // If asking about specific packages, include package info
-        if (message.includes('ser ') || 
-            message.includes('sér ') || 
-            message.includes('saman') || 
-            message.includes('premium') || 
-            message.includes('standard') ||
-            message.includes('classic')) {
-            relevantInfo.push({
-                type: 'packages',
-                content: knowledgeBase.packages
-            });
-        }
-    }
-
-    // Ritual related queries
-    if (message.includes('ritual') || 
-        message.includes('skjol') ||
-        message.includes('skjól') ||
-        message.includes('without ritual') ||
-        message.includes('skip ritual') ||
-        message.includes('optional ritual') ||
-        message.includes('ritual included') ||
-        message.includes('ritual access') ||
-        // Adding step-specific terms from website
-        message.includes('laug') ||
-        message.includes('kuldi') ||
-        message.includes('ylur') ||
-        message.includes('súld') ||
-        message.includes('suld') ||
-        message.includes('mykt') ||
-        message.includes('mýkt') ||
-        message.includes('gufa') ||
-        message.includes('saft') ||
-        // Adding descriptive terms from website
-        message.includes('seven step') ||
-        message.includes('7 step') ||
-        message.includes('steps') ||
-        message.includes('healing journey') ||
-        message.includes('wellness journey') ||
-        message.includes('bathing culture') ||
-        message.includes('cold plunge') ||
-        message.includes('sauna') ||
-        message.includes('steam') ||
-        message.includes('mist') ||
-        message.includes('body scrub') ||
-        message.includes('crowberry') ||
-        message.includes('krækiber') ||
-        message.includes('kraekiber') ||
-        // Temperature-related queries
-        message.includes('temperature') && (
-            message.includes('sauna') ||
-            message.includes('steam') ||
-            message.includes('mist') ||
-            message.includes('plunge')
-        )) {
-        relevantInfo.push({
-            type: 'ritual',
-            content: knowledgeBase.ritual
-        });
-        // Also include packages info since ritual is part of packages
-        relevantInfo.push({
-            type: 'packages',
-            content: knowledgeBase.packages
-        });
-    }
-
-    // Seasonal information
-    if (message.includes('winter') ||
-        message.includes('summer') ||
-        message.includes('season') ||
-        message.includes('weather') ||
-        message.includes('temperature') ||
-        message.includes('crowd') ||
-        message.includes('busy') ||
-        message.includes('northern lights') ||
-        message.includes('midnight sun') ||
-        message.includes('snow') ||
-        message.includes('crisp air') ||
-        message.includes('starry') ||
-        message.includes('star') ||
-        message.includes('night sky') ||
-        message.includes('sunset') ||
-        message.includes('peak season') ||
-        message.includes('less crowded') ||
-        message.includes('quieter') ||
-        message.includes('daylight') ||
-        message.includes('evening') ||
-        message.includes('late evening') ||
-        message.includes('twilight') ||
-        message.includes('golden light') ||
-        message.includes('infinity edge') ||
-        message.includes('view') ||
-        message.includes('unpredictable') ||
-        message.includes('dress') ||
-        message.includes('clothing') ||
-        message.includes('hat') ||
-        message.includes('head covering') ||
-        message.includes('best time') ||
-        message.includes('optimal time') ||
-        message.includes('june') ||
-        message.includes('august') ||
-        message.includes('may') ||
-        message.includes('time of year') ||
-        message.includes('conditions') ||
-        message.includes('atmosphere') ||
-        message.includes('air temperature') ||
-        message.includes('water temperature') ||
-        message.includes('warm water') ||
-        message.includes('geothermal water') ||
-        message.includes('what to expect')) {
-        relevantInfo.push({
-            type: 'seasonal_information',
-            content: knowledgeBase.seasonal_information
-        });
-    }
-
-    // Health and safety
-    if (message.includes('medical') || 
-        message.includes('health') ||
-        message.includes('sick') ||
-        message.includes('condition') ||
-        message.includes('pregnant') ||
-        message.includes('pregnancy') ||
-        message.includes('safe') ||
-        message.includes('doctor') ||
-        message.includes('wheelchair') ||
-        message.includes('disability') ||
-        message.includes('accessible') ||
-        message.includes('allergy') ||
-        message.includes('allergic') ||
-        message.includes('emergency') ||
-        message.includes('injury') ||
-        message.includes('injured') ||
-        message.includes('heart') ||
-        message.includes('blood pressure') ||
-        message.includes('nursing') ||
-        message.includes('medical condition') ||
-        message.includes('nut') ||
-        message.includes('help') ||
-        message.includes('water') ||
-        message.includes('drink') ||
-        message.includes('wellness') ||
-        message.includes('therapy') ||
-        message.includes('therapeutic') ||
-        message.includes('healing') ||
-        message.includes('relax') ||
-        message.includes('stress') ||
-        message.includes('recovery') ||
-        message.includes('risk') ||
-        message.includes('anxiety') ||
-        message.includes('tension') ||
-        message.includes('relief')) {            
-        relevantInfo.push({
-            type: 'safety',
-            content: knowledgeBase.policies.health_safety
-        });
-    }
-
-    // Age and policies
-    if (message.includes('age') || 
-        message.includes('old') ||
-        message.includes('child') ||
-        message.includes('children') ||
-        message.includes('restriction') ||
-        message.includes('policy') ||
-        message.includes('son') ||
-        message.includes('daughter') ||
-        message.includes('kid') ||
-        message.includes('young') ||
-        message.includes('baby') ||
-        message.includes('infant') ||
-        message.includes('family')) {
-        relevantInfo.push({
-            type: 'policies',
-            content: knowledgeBase.policies
-        });
-    }
-
-    // Facility specific
-    if (message.includes('facility') || 
-        message.includes('towel') || 
-        message.includes('rental') ||
-        message.includes('wheelchair') ||
-        message.includes('accessible') ||
-        message.includes('disabled') ||
-        message.includes('disability') ||
-        message.includes('handicap') ||
-        message.includes('aunt') ||  // Family member mentions often relate to accessibility
-        message.includes('assist') ||
-        message.includes('help') ||
-        message.includes('bring') ||
-        message.includes('swimsuit') ||
-        message.includes('changing room') ||
-        message.includes('change room') ||    // Added common variation
-        message.includes('private') ||
-        message.includes('storage') ||
-        message.includes('locker') ||
-        message.includes('shower') ||
-        message.includes('depth') ||
-        message.includes('deep') ||
-        message.includes('temperature') ||
-        message.includes('hot') ||
-        message.includes('warm') ||
-        message.includes('cold') ||
-        message.includes('water') ||
-        message.includes('swim') ||
-        message.includes('photo') ||
-        message.includes('camera') ||
-        message.includes('picture') ||
-        message.includes('infinity') ||
-        message.includes('view') ||
-        message.includes('ocean') ||
-        message.includes('sea') ||
-        message.includes('gender') ||
-        message.includes('men') ||
-        message.includes('women') ||
-        message.includes('male') ||
-        message.includes('female') ||
-        message.includes('non binary') ||
-        message.includes('nonbinary') ||
-        message.includes('non-binary') ||
-        message.includes('gender neutral') ||
-        message.includes('transgender') ||
-        message.includes('trans') ||
-        message.includes('gender identity') ||
-        // Amenities and rentals
-        message.includes('amenity') ||
-        message.includes('amenities') ||
-        message.includes('rent') ||
-        message.includes('hair dryer') ||
-        message.includes('hairdryer') ||
-        message.includes('robe') ||
-        message.includes('slipper') ||
-        message.includes('luggage') ||
-        message.includes('bag') ||
-        message.includes('baggage') ||
-        // Accessibility terms
-        message.includes('mobility') ||
-        message.includes('chairlift') ||
-        message.includes('lift') ||
-        message.includes('support equipment') ||
-        message.includes('special needs') ||
-        // Photography and rules
-        message.includes('photography') ||
-        message.includes('phone') ||
-        message.includes('device') ||
-        message.includes('waterproof') ||
-        message.includes('case') ||
-        message.includes('pictures allowed') ||
-        message.includes('taking pictures') ||
-        // Facility features
-        message.includes('infinity edge') ||
-        message.includes('cave') ||
-        message.includes('cave-side') ||
-        message.includes('canopy') ||
-        message.includes('horizon') ||
-        message.includes('bench') ||
-        message.includes('viewing platform') ||
-        // Etiquette and rules
-        message.includes('etiquette') ||
-        message.includes('rule') ||
-        message.includes('shoes') ||
-        message.includes('shower before') ||
-        message.includes('hygiene') ||
-        message.includes('clean') ||
-        // Hydration and safety
-        message.includes('hydration') ||
-        message.includes('drinking water') ||
-        message.includes('fountain') ||
-        message.includes('drink water') ||
-        message.includes('stay hydrated') ||
-        message.includes('medical') ||
-        message.includes('first aid') ||
-        message.includes('safety') ||
-        // Common question phrasings
-        message.includes('where is') ||
-        message.includes('how deep') ||
-        message.includes('how warm') ||
-        message.includes('what facilities') ||
-        message.includes('can i bring') ||
-        message.includes('is there') ||
-        message.includes('do you have')) {
-        relevantInfo.push({
-            type: 'facilities',
-            content: knowledgeBase.facilities
-        });
-    }
-
-    // Dining and bar queries
-    if (message.includes('bar') || 
-        message.includes('drink') ||
-        message.includes('beverage') ||
-        message.includes('alcohol') ||
-        message.includes('gelmir') ||
-        message.includes('food') ||
-        message.includes('dining') ||
-        message.includes('cafe') ||
-        message.includes('restaurant') ||
-        message.includes('premises') ||
-        message.includes('inside') ||
-        message.includes('where is') ||
-        // Adding specific venue names
-        message.includes('smakk') ||
-        message.includes('keimur') ||
-        // Food-specific terms
-        message.includes('platter') ||
-        message.includes('menu') ||
-        message.includes('eat') ||
-        message.includes('soup') ||
-        message.includes('bagel') ||
-        message.includes('toastie') ||
-        message.includes('skyr') ||
-        message.includes('coffee') ||
-        message.includes('snack') ||
-        message.includes('lunch') ||
-        // Specific menu items
-        message.includes('cheese') ||
-        message.includes('gravlax') ||
-        message.includes('herring') ||
-        message.includes('vegan') ||
-        message.includes('hummus') ||
-        message.includes('gluten') ||
-        // Drink specifics
-        message.includes('wine') ||
-        message.includes('beer') ||
-        message.includes('gull') ||
-        message.includes('somersby') ||
-        message.includes('cocktail') ||
-        message.includes('soft drink') ||
-        message.includes('coffee') ||
-        message.includes('latte') ||
-        message.includes('cappuccino') ||
-        message.includes('tea') ||
-        // Price related
-        message.includes('how much') ||
-        message.includes('cost of food') ||
-        message.includes('price of drink') ||
-        // Timing related
-        message.includes('kitchen') ||
-        message.includes('serving') ||
-        message.includes('last order') ||
-        message.includes('after swim') ||
-        message.includes('before swim') ||
-        // Local focus terms
-        message.includes('icelandic food') ||
-        message.includes('local food') ||
-        message.includes('traditional') ||
-        message.includes('tasting') ||
-        message.includes('culinary')) {
-        relevantInfo.push({
-            type: 'dining',
-            content: knowledgeBase.dining
-        });
-        // Also include facilities info for location context
-        relevantInfo.push({
-            type: 'facilities',
-            content: knowledgeBase.facilities
-        });
-    }
-
-    // Transportation, location, and directions
-    if (message.includes('shuttle') || 
-        message.includes('transport') ||
-        message.includes('bus') ||
-        message.includes('how to get') ||
-        message.includes('get to') ||
-        message.includes('from bsi') ||
-        message.includes('bus to') ||
-        message.includes('from bsí') ||
-        message.includes('bsí to') ||
-        message.includes('transfer') ||
-        message.includes('travel to') ||
-        message.includes('direction') ||
-        message.includes('parking') ||
-        message.includes('address') ||
-        message.includes('location') ||
-        message.includes('drive') ||
-        message.includes('airport') ||
-        message.includes('car') ||
-        message.includes('taxi') ||
-        message.includes('walking') ||
-        message.includes('from reykjavik') ||
-        message.includes('from city') ||
-        message.includes('far') || 
-        message.includes('distance') ||
-        message.includes('city') ||
-        message.includes('downtown') ||
-        message.includes('center') ||
-        message.includes('central') ||
-        message.includes('where') ||
-        message.includes('area') ||
-        message.includes('neighbourhood') ||
-        message.includes('near') ||
-        // Adding website specific terms
-        message.includes('kópavogur') ||
-        message.includes('kopavogur') ||
-        message.includes('vesturvör') ||
-        message.includes('vesturvor') ||
-        message.includes('kársnes') ||
-        message.includes('karsnes') ||
-        // Public transport specifics
-        message.includes('public transport') ||
-        message.includes('strætó') ||
-        message.includes('straeto') ||
-        message.includes('bus number') ||
-        message.includes('bus #') ||
-        message.includes('bus 4') ||
-        message.includes('bus 35') ||
-        message.includes('bus route') ||
-        message.includes('hlemmur') ||
-        message.includes('hamraborg') ||
-        message.includes('hafnarbraut') ||
-        // Airport transfer specifics
-        message.includes('keflavik') ||
-        message.includes('kef') ||
-        message.includes('flybus') ||
-        message.includes('fly bus') ||
-        message.includes('from airport') ||
-        message.includes('to airport') ||
-        // BSÍ transfer specifics
-        message.includes('reykjavik excursions') ||
-        message.includes('pickup') ||
-        message.includes('pick up') ||
-        message.includes('pick-up') ||
-        message.includes('hotel pickup') ||
-        message.includes('shuttle time') ||
-        message.includes('shuttle schedule') ||
-        message.includes('return shuttle') ||
-        message.includes('bus terminal') ||
-        // Eco transport options
-        message.includes('walking path') ||
-        message.includes('cycle') ||
-        message.includes('cycling') ||
-        message.includes('bike') ||
-        message.includes('biking') ||
-        message.includes('electric car') ||
-        message.includes('charging') ||
-        // Parking specifics
-        message.includes('park') ||
-        message.includes('parking lot') ||
-        message.includes('car park') ||
-        message.includes('free parking') ||
-        message.includes('disabled parking') ||
-        message.includes('accessible parking') ||
-        // Common question formats
-        message.includes('how do i get') ||
-        message.includes('best way to') ||
-        message.includes('easiest way to') ||
-        message.includes('what is the way to') ||
-        message.includes('how to reach') ||
-        message.includes('how can i get') ||
-        message.includes('minutes from') ||
-        message.includes('hours from') ||
-        message.includes('directions to') ||
-        message.includes('directions from') ||
-        // Time and duration queries
-        message.includes('how long') ||
-        message.includes('travel time') ||
-        message.includes('journey time') ||
-        message.includes('duration') ||
-        message.includes('minutes away') ||
-        message.includes('hours away') ||
-        // Location queries
-        message.includes('where are you') ||
-        message.includes('where is sky') ||
-        message.includes('located in') ||
-        message.includes('situated in') ||
-        message.includes('whereabouts') ||
-        // Luggage related
-        message.includes('luggage') ||
-        message.includes('suitcase') ||
-        message.includes('bags') ||
-        message.includes('baggage storage') ||
-        message.includes('store luggage') ||
-        message.includes('store bags')) {
-        
-        // Include both location and full transportation info
-        relevantInfo.push({
-            type: 'location',
-            content: knowledgeBase.transportation.location
-        });
-        relevantInfo.push({
-            type: 'transportation',
-            content: knowledgeBase.transportation
-        });
-    }
-
-        // Group booking related queries
-        if (message.includes('group') || 
-        message.includes('corporate') ||
-        message.includes('team building') ||
-        message.includes('party') ||
-        message.includes('celebration') ||
-        message.includes('tour group') ||
-        message.includes('company') ||
-        message.includes('retreat') ||
-        message.includes('multiple people') ||
-        message.includes('many people')) {
-        relevantInfo.push({
-            type: 'group_bookings',
-            content: knowledgeBase.group_bookings
-        });
-    }
-
-    // Multi-Pass related queries
-    if (message.includes('multi-pass') || 
-        message.includes('multi pass') ||
-        message.includes('multipass') ||
-        message.includes('hefð') ||
-        message.includes('hefd') ||
-        message.includes('venja') ||
-        message.includes('six visits') ||
-        message.includes('6 visits') ||
-        message.includes('multiple visits') ||
-        message.includes('loyalty') ||
-        message.includes('regular visits') ||
-        message.includes('frequent visits')) {
-        relevantInfo.push({
-            type: 'multi_pass',
-            content: knowledgeBase.multi_pass
-        });
-    }
-    return relevantInfo;
 };
