@@ -1,9 +1,9 @@
 // Constants
-const WEBHOOK_URL = 'https://sky-lagoon-chat-2024.vercel.app/chat';
-const API_KEY = 'sky-lagoon-secret-2024';  // This should match your .env API_KEY
+const WEBHOOK_URL = 'https://lavashow-chat-2024.vercel.app/chat';
+const API_KEY = 'lavashow-secret-2024-xyz';  // Match your .env API_KEY
 
-console.log('Script loaded!'); // Add this line
-console.log('WEBHOOK_URL:', WEBHOOK_URL); // Add this line
+console.log('Script loaded!');
+console.log('WEBHOOK_URL:', WEBHOOK_URL);
 
 // Get DOM elements
 const chatMessages = document.getElementById('chat-messages');
@@ -12,8 +12,9 @@ const sendButton = document.getElementById('send-button');
 
 // Add welcome message when chat loads
 window.onload = () => {
-    addMessage("Welcome to Sky Lagoon! How may I assist you today?", 'bot');
+    addMessage("Hello! I'm Tinna. Would you like to learn about our unique lava demonstrations, experience packages, or how to get here?", 'bot');
 };
+
 
 // Send message function
 async function sendMessage() {

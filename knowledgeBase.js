@@ -1788,3 +1788,395 @@ export const knowledgeBase = {
         }
     }
 };
+
+// Enhanced getRelevantKnowledge function
+export const getRelevantKnowledge = (userMessage) => {
+    const message = userMessage.toLowerCase();
+    let relevantInfo = [];
+
+    // General information and overview
+    if (message.includes('what is') || 
+        message.includes('tell me about') || 
+        message.includes('overview') ||
+        message.includes('lava show') ||
+        message.includes('explain') ||
+        message.includes('description')) {
+        relevantInfo.push({
+            type: 'general_info',
+            content: knowledgeBase.general_info
+        });
+
+        // If asking about awards or recognition
+        if (message.includes('award') || 
+            message.includes('review') || 
+            message.includes('rating') ||
+            message.includes('tripadvisor')) {
+            relevantInfo.push({
+                type: 'marketing_highlights',
+                content: knowledgeBase.marketing_highlights
+            });
+        }
+    }
+
+    // Location and getting there
+    if (message.includes('where') || 
+        message.includes('location') ||
+        message.includes('address') ||
+        message.includes('reykjavik') ||
+        message.includes('vik') ||
+        message.includes('direction') ||
+        message.includes('how to get') ||
+        message.includes('getting there') ||
+        message.includes('find you')) {
+        relevantInfo.push({
+            type: 'general_info',
+            content: knowledgeBase.general_info.locations
+        });
+
+        // If asking about nearby attractions
+        if (message.includes('area') || 
+            message.includes('nearby') || 
+            message.includes('around') ||
+            message.includes('close to')) {
+            relevantInfo.push({
+                type: 'extended_visitor_info',
+                content: knowledgeBase.extended_visitor_info.local_area
+            });
+        }
+    }
+
+    // Technical and educational content
+    if (message.includes('how') || 
+        message.includes('work') ||
+        message.includes('temperature') ||
+        message.includes('heat') ||
+        message.includes('lava') ||
+        message.includes('melt') ||
+        message.includes('science') ||
+        message.includes('learn') ||
+        message.includes('explain')) {
+        relevantInfo.push({
+            type: 'educational_content',
+            content: knowledgeBase.educational_content
+        });
+        
+        relevantInfo.push({
+            type: 'show_technical_details',
+            content: knowledgeBase.show_technical_details
+        });
+
+        // If asking about the furnace or equipment
+        if (message.includes('furnace') || 
+            message.includes('equipment') || 
+            message.includes('clean') ||
+            message.includes('slide') ||
+            message.includes('tool')) {
+            relevantInfo.push({
+                type: 'technical_specifications',
+                content: knowledgeBase.technical_specifications
+            });
+        }
+    }
+
+    // Safety and protocols
+    if (message.includes('safe') || 
+        message.includes('security') ||
+        message.includes('danger') ||
+        message.includes('risk') ||
+        message.includes('protect') ||
+        message.includes('emergency') ||
+        message.includes('evacuation')) {
+        relevantInfo.push({
+            type: 'safety_protocols',
+            content: knowledgeBase.safety_protocols
+        });
+
+        // If asking about emergency procedures
+        if (message.includes('emergency') || 
+            message.includes('evacuation') || 
+            message.includes('procedure')) {
+            relevantInfo.push({
+                type: 'emergency_procedures',
+                content: knowledgeBase.emergency_procedures
+            });
+        }
+    }
+
+    // Experiences and packages
+    if (message.includes('experience') || 
+        message.includes('package') ||
+        message.includes('classic') ||
+        message.includes('premium') ||
+        message.includes('saman') ||
+        message.includes('ser') ||
+        message.includes('sér') ||
+        message.includes('ticket') ||
+        message.includes('admission')) {
+        relevantInfo.push({
+            type: 'experiences',
+            content: knowledgeBase.experiences
+        });
+
+        // If asking about pricing or booking
+        if (message.includes('price') || 
+            message.includes('cost') || 
+            message.includes('book') ||
+            message.includes('reserve')) {
+            relevantInfo.push({
+                type: 'booking_policies',
+                content: knowledgeBase.booking_policies
+            });
+        }
+    }
+
+    // Group bookings and private events
+    if (message.includes('group') || 
+        message.includes('private') ||
+        message.includes('corporate') ||
+        message.includes('company') ||
+        message.includes('team') ||
+        message.includes('school') ||
+        message.includes('event')) {
+        relevantInfo.push({
+            type: 'group_bookings',
+            content: knowledgeBase.group_bookings
+        });
+
+        // If asking about catering or special services
+        if (message.includes('food') || 
+            message.includes('drink') || 
+            message.includes('cater') ||
+            message.includes('menu')) {
+            relevantInfo.push({
+                type: 'special_services',
+                content: knowledgeBase.special_services.catering
+            });
+        }
+    }
+
+    // Gift shop and souvenirs
+    if (message.includes('gift') || 
+        message.includes('souvenir') ||
+        message.includes('shop') ||
+        message.includes('buy') ||
+        message.includes('merchandise') ||
+        message.includes('lava shard')) {
+        relevantInfo.push({
+            type: 'gift_shop',
+            content: knowledgeBase.gift_shop
+        });
+    }
+
+    // Opening hours and timing
+    if (message.includes('open') || 
+        message.includes('hour') || 
+        message.includes('time') ||
+        message.includes('close') ||
+        message.includes('slot') ||
+        message.includes('when') ||
+        message.includes('schedule') ||
+        message.includes('weekend') ||
+        message.includes('weekday') ||
+        message.includes('today') ||
+        message.includes('tomorrow') ||
+        message.includes('morning') ||
+        message.includes('evening') ||
+        message.includes('afternoon') ||
+        // Month specific
+        message.includes('january') ||
+        message.includes('february') ||
+        message.includes('march') ||
+        message.includes('april') ||
+        message.includes('may') ||
+        message.includes('june') ||
+        message.includes('july') ||
+        message.includes('august') ||
+        message.includes('september') ||
+        message.includes('october') ||
+        message.includes('november') ||
+        message.includes('december') ||
+        // Holiday specific
+        message.includes('holiday') ||
+        message.includes('christmas') ||
+        message.includes('new year')) {
+        
+        relevantInfo.push({
+            type: 'show_scheduling',
+            content: knowledgeBase.show_scheduling
+        });
+
+        relevantInfo.push({
+            type: 'seasonal_info',
+            content: knowledgeBase.seasonal_info
+        });
+
+        // If asking about specific seasons
+        if (message.includes('season') || 
+            message.includes('summer') || 
+            message.includes('winter')) {
+            relevantInfo.push({
+                type: 'seasonal_operations',
+                content: knowledgeBase.seasonal_operations
+            });
+        }
+    }
+
+    // Booking modifications and late arrivals
+    if (message.includes('late') || 
+        message.includes('delay') ||
+        message.includes('miss') ||
+        message.includes('change') ||
+        message.includes('modify') ||
+        message.includes('cancel') ||
+        message.includes('refund') ||
+        message.includes('reschedule') ||
+        message.includes('another time')) {
+        
+        relevantInfo.push({
+            type: 'booking_management',
+            content: knowledgeBase.customer_service_protocols.booking_management
+        });
+
+        relevantInfo.push({
+            type: 'arrival',
+            content: knowledgeBase.booking_policies.arrival
+        });
+    }
+
+    // Travel sector and agent relationships
+    if (message.includes('agent') || 
+        message.includes('guide') ||
+        message.includes('tour operator') ||
+        message.includes('partner') ||
+        message.includes('commission') ||
+        message.includes('resell') ||
+        message.includes('bokun') ||
+        message.includes('trade') ||
+        message.includes('industry')) {
+        
+        relevantInfo.push({
+            type: 'travel_sector',
+            content: knowledgeBase.travel_sector
+        });
+
+        if (message.includes('commission') || 
+            message.includes('payment') || 
+            message.includes('invoice')) {
+            relevantInfo.push({
+                type: 'payment_terms',
+                content: knowledgeBase.travel_sector.partner_policies.payment_terms
+            });
+        }
+    }
+
+    // Accessibility and languages
+    if (message.includes('wheelchair') || 
+        message.includes('accessible') ||
+        message.includes('disability') ||
+        message.includes('handicap') ||
+        message.includes('special need') ||
+        message.includes('language') ||
+        message.includes('english') ||
+        message.includes('translation') ||
+        message.includes('understand')) {
+        
+        relevantInfo.push({
+            type: 'accessibility',
+            content: knowledgeBase.extended_visitor_info.accessibility
+        });
+    }
+
+    // Children and age restrictions
+    if (message.includes('child') || 
+        message.includes('kid') ||
+        message.includes('age') ||
+        message.includes('young') ||
+        message.includes('family') ||
+        message.includes('baby') ||
+        message.includes('minimum') ||
+        message.includes('restriction') ||
+        message.includes('allowed')) {
+        
+        relevantInfo.push({
+            type: 'children_policy',
+            content: knowledgeBase.safety_protocols.visitor_safety.children_policy
+        });
+
+        relevantInfo.push({
+            type: 'family_info',
+            content: knowledgeBase.educational_program.target_audiences.families
+        });
+    }
+
+    // Pop-up shows and special events
+    if (message.includes('popup') || 
+        message.includes('pop-up') ||
+        message.includes('pop up') ||
+        message.includes('mobile') ||
+        message.includes('travel') ||
+        message.includes('outside') ||
+        message.includes('special event') ||
+        message.includes('custom')) {
+        
+        relevantInfo.push({
+            type: 'popup_shows',
+            content: knowledgeBase.special_services.popup_shows
+        });
+
+        if (message.includes('private') || message.includes('exclusive')) {
+            relevantInfo.push({
+                type: 'special_events',
+                content: knowledgeBase.special_events
+            });
+        }
+    }
+
+    // Quality and maintenance
+    if (message.includes('quality') || 
+        message.includes('maintenance') ||
+        message.includes('clean') ||
+        message.includes('safety') ||
+        message.includes('check') ||
+        message.includes('standard') ||
+        message.includes('monitor')) {
+        
+        relevantInfo.push({
+            type: 'quality_control',
+            content: knowledgeBase.quality_control
+        });
+
+        relevantInfo.push({
+            type: 'operational_details',
+            content: knowledgeBase.operational_details
+        });
+    }
+
+    // FAQ handling
+    if (relevantInfo.length === 0) {
+        // Check FAQs for matching questions
+        Object.entries(knowledgeBase.faq).forEach(([category, questions]) => {
+            Object.values(questions).forEach(qa => {
+                if (qa.question && message.includes(qa.question.toLowerCase())) {
+                    relevantInfo.push({
+                        type: 'faq',
+                        content: { [category]: { [qa.question]: qa.answer } }
+                    });
+                }
+            });
+        });
+
+        // Check extended FAQs
+        Object.entries(knowledgeBase.extended_faq).forEach(([category, subcategories]) => {
+            Object.values(subcategories).forEach(qa => {
+                if (qa.question && message.includes(qa.question.toLowerCase())) {
+                    relevantInfo.push({
+                        type: 'extended_faq',
+                        content: { [category]: { [qa.question]: qa.answer } }
+                    });
+                }
+            });
+        });
+    }
+
+    return relevantInfo;
+};
