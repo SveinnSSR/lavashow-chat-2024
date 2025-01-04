@@ -4,7 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import OpenAI from 'openai';
-import { getRelevantKnowledge } from './knowledgeBase.js';
+import { getRelevantKnowledge } from './kb.js';
 
 // Cache and state management
 const responseCache = new Map();
