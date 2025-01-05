@@ -105,19 +105,7 @@ const FOLLOW_UP_CONTEXTS = {
 const LAVA_SHOW_GUIDELINES = {
     terminology: {
         preferred: {
-            'demonstration': 'show',
-            'presentation': 'show',
-            'exhibit': 'show',
-            'performance': 'show',
-            'display': 'show',
-            'lava show': 'LAVA SHOW',
-            'premium experience': 'Sér',
-            'classic experience': 'Saman',
-            'standard': 'classic',
-            'basic': 'classic',
-            'guide': 'host',
-            'presenter': 'host',
-            'staff': 'team members'
+            'team members': 'staff'     // Use team members instead of staff
         }
     }
 };
