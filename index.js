@@ -239,19 +239,19 @@ const formatResponse = (response) => {
 
 // Price calculation function
 const calculatePricing = (message, context) => {
-    // Base prices
+    // Base prices - UPDATED to match knowledgeBase
     const PRICING = {
         classic: {
-            adult: 5990,      // ISK
-            child: 2990,      // ISK
+            adult: 5900,      // ISK (from knowledgeBase 5,900)
+            child: 3500,      // ISK (from knowledgeBase 3,500)
             student: 4790,    // ISK
             senior: 4790      // ISK
         },
         premium: {
-            adult: 8990,      // ISK
+            adult: 9900,      // ISK (from knowledgeBase 9,900)
             child: 4490,      // ISK
-            student: 7190,    // ISK
-            senior: 7190      // ISK
+            student: 7920,    // ISK (80% of adult price)
+            senior: 7920      // ISK (80% of adult price)
         },
         group: {
             minSize: 10,
@@ -565,12 +565,25 @@ app.post('/chat', verifyApiKey, async (req, res) => {
             }
         };
 
-        // Get relevant knowledge
-        const relevantKnowledge = getRelevantKnowledge(userMessage);
+        // Get relevant knowledge with enhanced retrieval
+        const knowledgeResult = getRelevantKnowledge(userMessage, context);
+        const relevantKnowledge = knowledgeResult.relevantInfo;
+        const queryType = knowledgeResult.queryType;
+        
         console.log('\n📚 Knowledge Base Match:', {
+            queryType: queryType,
             matches: relevantKnowledge.length,
             types: relevantKnowledge.map(k => k.type)
         });
+
+        // Check if we need to calculate pricing
+        const isPricingQuery = queryType === 'pricing';
+        let calculatedPricing = null;
+        
+        if (isPricingQuery) {
+            calculatedPricing = calculatePricing(userMessage, context);
+            console.log('\n💰 Price calculation:', calculatedPricing);
+        }
 
         // Create base system prompt with Tinna's personality
         let systemPrompt = generateSystemPrompt(userLanguage, relevantKnowledge);
@@ -585,15 +598,6 @@ app.post('/chat', verifyApiKey, async (req, res) => {
             messages.push(...context.messages.slice(-5));
         }
 
-        // Check if we need to calculate pricing
-        const isPricingQuery = userMessage.toLowerCase().match(/cost|price|how much|discount/i);
-        let calculatedPricing = null;
-        
-        if (isPricingQuery) {
-            calculatedPricing = calculatePricing(userMessage, context);
-            console.log('\n💰 Price calculation:', calculatedPricing);
-        }
-        
         // Add user message with any pricing calculations
         messages.push({
             role: "user",
@@ -650,6 +654,9 @@ app.post('/chat', verifyApiKey, async (req, res) => {
         // Update conversation context
         context.messages.push({ role: "user", content: userMessage });
         context.messages.push({ role: "assistant", content: formattedResponse });
+        
+        // Store the query type in context
+        context.conversation.lastQueryType = queryType;
         
         // Maintain reasonable history size
         if (context.messages.length > 10) {
