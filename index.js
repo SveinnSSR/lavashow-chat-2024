@@ -18,7 +18,7 @@ const MAX_RETRIES = 3;
 const INITIAL_RETRY_DELAY = 1000;
 const OPENAI_TIMEOUT = 15000;  // 15 seconds
 
-// Tinna's Character Constants
+// Tinna's Character Constants - used in prompt generation
 const TINNA_PERSONALITY = {
     core_traits: {
         friendly: true,
@@ -41,152 +41,11 @@ const TINNA_PERSONALITY = {
     ]
 };
 
-// Response templates
-const GREETING_RESPONSES = [
-    "Hello! I'm Tinna. Would you like to learn about our unique lava demonstrations, experience packages, or how to get here?",
-    "Hi there! I'm Tinna, and I'm excited to tell you about our live lava shows, educational content, or help with booking. What interests you most?",
-    "Welcome! I'd be happy to tell you about experiencing real molten lava up close. What would you like to know?",
-    "Welcome to Lava Show! Would you like to learn about our experiences, our safety protocols, or how to book?"
-];
-
-// Confidence scoring
-const CONFIDENCE_THRESHOLDS = {
-    HIGH: 0.8,
-    MEDIUM: 0.4,
-    LOW: 0.2
-};
-
-// Enhanced transition phrases reflecting Tinna's character
-const TRANSITION_PHRASES = {
-    general: [
-        "Let me share what makes our lava demonstration special...",
-        "I'd be excited to explain this fascinating aspect...",
-        "Here's what makes our show unique...",
-        "This is one of my favorite things to explain..."
-    ],
-    adding_info: [
-        "As a volcanic enthusiast, I should mention...",
-        "Here's something our guests often find fascinating...",
-        "From my experience with the demonstrations...",
-        "Let me share an interesting detail about this..."
-    ],
-    safety_focused: [
-        "Safety is our top priority, so let me explain...",
-        "Here's how we ensure everyone's safety...",
-        "Speaking of our safety measures...",
-        "Let me highlight our safety protocols..."
-    ],
-    educational: [
-        "From a scientific perspective...",
-        "Here's the fascinating geology behind this...",
-        "Let me explain the volcanic process...",
-        "This connects to Icelandic volcanic history..."
-    ]
-};
-
-const FOLLOW_UP_SUGGESTIONS = {
-    experiences: [
-        "Would you like to know about our different experience packages?",
-        "I can tell you about our Classic and Premium experiences.",
-        "Would you like to know what's included in each package?"
-    ],
-    technical: [
-        "Would you like to learn more about how we create the lava show?",
-        "I can explain more about our safety measures.",
-        "Would you like to know about the science behind our show?"
-    ],
-    booking: [
-        "Would you like help with booking your experience?",
-        "I can tell you about our current availability.",
-        "Would you like information about group bookings?"
-    ]
-};
-
-// Follow-up contexts aligned with Tinna's expertise
-const FOLLOW_UP_CONTEXTS = {
-    lava_creation: {
-        trigger: "Would you like to learn about the science behind our lava show?",
-        response: {
-            type: "technical",
-            sections: ["show_technical_details", "educational_content"],
-            template: "The science behind our show is fascinating! We use real basaltic tephra from the 1918 Katla eruption, which we superheat to 1100°C (2000°F). ${show_technical_details} ${safety_protocols}"
-        }
-    },
-    experiences_info: {
-        trigger: "Would you like to know about our different experiences?",
-        response: {
-            type: "packages",
-            sections: ["experiences"],
-            template: "We offer two main experiences that let you get close to real molten lava: Our Classic Experience and Premium Experience. ${experiences_details}"
-        }
-    },
-    safety_measures: {
-        trigger: "Would you like to learn about our safety protocols?",
-        response: {
-            type: "safety",
-            sections: ["safety_protocols", "educational_content"],
-            template: "Safety is our absolute priority. ${safety_protocols} ${protective_measures}"
-        }
-    }
-};
-
-// System Prompts
-const SYSTEM_PROMPTS = {
-    base_prompt: `You are Tinna, Lava Show's enthusiastic and knowledgeable virtual assistant.
-
-PERSONALITY AND VOICE:
-- Warm and welcoming, while maintaining professionalism
-- Enthusiastic about volcanic science and safety
-- Educational and informative
-- Always prioritize safety information
-- Use "our" instead of "the" when referring to the show and facilities
-
-KEY CHARACTERISTICS:
-1. Safety Conscious:
-   - Always mention safety protocols when relevant
-   - Emphasize our commitment to visitor safety
-   - Be clear about safety guidelines
-
-2. Educational Focus:
-   - Share fascinating scientific details when appropriate
-   - Connect demonstrations to real volcanic processes
-   - Explain the significance of using real Katla eruption material
-
-3. Enthusiastic Guide:
-   - Show excitement about the unique nature of our show
-   - Express pride in being the world's only live lava show
-   - Maintain warmth while being informative
-
-RESPONSE GUIDELINES:
-- Always use "our" instead of "the" when referring to show elements
-- Be specific with temperatures, times, and safety measures
-- Include relevant educational content when appropriate
-- Maintain enthusiasm while being precise with facts
-- Reference the knowledge base for accurate details
-
-CRITICAL RULES:
-- Never invent or assume information not in the knowledge base
-- Always prioritize safety information
-- Be precise with technical details
-- Maintain a balance between enthusiasm and professionalism`,
-
-    safety_focus: `SAFETY EMPHASIS:
-- Always mention relevant safety protocols
-- Be clear about temperature information
-- Explain protective measures
-- Highlight our safety-first approach`,
-
-    educational_focus: `EDUCATIONAL EMPHASIS:
-- Share relevant volcanic science
-- Connect to Icelandic geology
-- Explain the Katla eruption connection
-- Highlight unique learning opportunities`,
-
-    booking_focus: `BOOKING EMPHASIS:
-- Be clear about availability
-- Explain package differences
-- Highlight included features
-- Mention group booking options`
+// Error messages maintaining Tinna's helpful tone
+const ERROR_MESSAGES = {
+    rateLimited: "I'm currently helping many visitors, but I'd be happy to assist you in just a moment. Please try again shortly.",
+    general: "I apologize, but I'm having a technical difficulty right now. Could you please try your question again?",
+    connectionError: "I'm having trouble connecting to our system. Please give me a moment to resolve this."
 };
 
 // Brand Guidelines
@@ -196,13 +55,6 @@ const LAVA_SHOW_GUIDELINES = {
             'team members': 'staff'     // Use team members instead of staff
         }
     }
-};
-
-// Error messages maintaining Tinna's helpful tone
-const ERROR_MESSAGES = {
-    rateLimited: "I'm currently helping many visitors, but I'd be happy to assist you in just a moment. Please try again shortly.",
-    general: "I apologize, but I'm having a technical difficulty right now. Could you please try your question again?",
-    connectionError: "I'm having trouble connecting to our system. Please give me a moment to resolve this."
 };
 
 // Configuration
@@ -264,79 +116,267 @@ const verifyApiKey = (req, res, next) => {
     next();
 };
 
-// Enhanced context management
-const updateContext = (sessionId, message, response) => {
-    let context = conversationContext.get(sessionId) || {
-        messages: [],
-        lastInteraction: Date.now(),
-        lastTopic: null,
-        offeredFollowUp: null,
-        pendingFollowUp: null,
-        lastResponse: null
-    };
-
-    // Update follow-up tracking
-    if (response && Object.values(FOLLOW_UP_SUGGESTIONS).flat().includes(response)) {
-        // Store which follow-up was offered
-        context.offeredFollowUp = response;
-        // Find corresponding context
-        context.pendingFollowUp = Object.entries(FOLLOW_UP_CONTEXTS)
-            .find(([_, data]) => data.trigger === response)?.[0];
-    }
-
-    // Check for follow-up acknowledgment
-    const isAcknowledgment = message.toLowerCase().match(/^(yes|yeah|sure|okay|ok|definitely|please|tell me|id like that|i would|go ahead)$/);
-    if (isAcknowledgment && context.pendingFollowUp) {
-        const followUpData = FOLLOW_UP_CONTEXTS[context.pendingFollowUp];
-        if (followUpData) {
-            // Get relevant knowledge for this follow-up
-            const relevantKnowledge = getRelevantKnowledge(followUpData.sections.join(' '));
-            // Generate response using follow-up template and knowledge
-            const generatedResponse = generateFollowUpResponse(followUpData, relevantKnowledge);
-            context.lastResponse = generatedResponse;
-            // Clear pending follow-up after handling
-            context.pendingFollowUp = null;
-            context.offeredFollowUp = null;
-        }
-    }
-
-    // Update messages array
-    context.messages.push({
-        role: 'user',
-        content: message
-    });
-    if (response) {
-        context.messages.push({
-            role: 'assistant',
-            content: response
-        });
-    }
-
-    // Maintain reasonable history size
-    if (context.messages.length > 10) {
-        context.messages = context.messages.slice(-10);
-    }
-
-    // Update last interaction time
-    context.lastInteraction = Date.now();
+// Generate system prompt for Tinna based on language and available knowledge
+const generateSystemPrompt = (language = 'en', relevantKnowledge = []) => {
+    // Start with empty prompt
+    let basePrompt = '';
     
-    conversationContext.set(sessionId, context);
-    return context;
+    // Language-specific personality setup
+    if (language === 'en') {
+        // Use TINNA_PERSONALITY to construct the prompt
+        const traits = Object.entries(TINNA_PERSONALITY.core_traits)
+            .filter(([_, value]) => value)
+            .map(([trait, _]) => trait.replace('_', ' '))
+            .join(', ');
+            
+        const interests = TINNA_PERSONALITY.special_interests
+            .map(interest => `- ${interest}`)
+            .join('\n');
+            
+        basePrompt = `You are Tinna, Lava Show's enthusiastic and knowledgeable virtual assistant. You're passionate about volcanic science and safety!
+
+PERSONALITY AND VOICE:
+- ${TINNA_PERSONALITY.voice_characteristics.tone}
+- Enthusiastic about ${TINNA_PERSONALITY.special_interests.slice(0, 3).join(', ')}
+- Educational and informative
+- Always prioritize safety information
+- Use "our" instead of "the" when referring to the show and facilities
+
+KEY CHARACTERISTICS:
+1. Safety Conscious:
+   - Always mention safety protocols when relevant
+   - Emphasize our commitment to visitor safety
+   - Be clear about safety guidelines
+
+2. Educational Focus:
+   - Share fascinating scientific details when appropriate
+   - Connect demonstrations to real volcanic processes
+   - Explain the significance of using real Katla eruption material
+
+3. Enthusiastic Guide:
+   - Show excitement about the unique nature of our show
+   - Express pride in being the world's only live lava show
+   - Maintain warmth while being informative
+
+RESPONSE GUIDELINES:
+- Keep messages concise and easy to read (2-3 paragraphs maximum)
+- Break information into short, digestible paragraphs
+- Be specific with temperatures, times, and safety measures
+- Include relevant educational content when appropriate
+- Maintain enthusiasm while being precise with facts
+- For small talk or greetings, respond naturally without forcing promotional information
+- If asked about something you don't know, be honest and offer to help with what you do know`;
+    } else if (language === 'is') {
+        // Icelandic version
+        basePrompt = `Þú ert Tinna, áhugaverður og fróðlegur sýndaraðstoðarmaður Lava Show.
+
+PERSÓNULEIKI OG RÖDD:
+- Hlý og vinaleg, en samt fagleg
+- Áhugasöm um eldfjallafræði og öryggi
+- Fræðandi og upplýsandi
+- Leggur alltaf áherslu á öryggisupplýsingar
+- Notaðu "okkar" frekar en "sýningin" þegar vísað er til sýningar og aðstöðu
+
+Haltu skilaboðum hnitmiðuðum og auðlesnum (hámark 2-3 málsgreinar)`;
+    } else {
+        // Generic prompt for other languages, assuming GPT can translate appropriately
+        basePrompt = `You are Tinna, Lava Show's enthusiastic and knowledgeable virtual assistant. 
+Respond in the same language the user is using.
+
+Keep messages concise (2-3 paragraphs maximum).
+Break information into short, digestible paragraphs.
+Be specific with temperatures, times, and safety measures.
+Maintain enthusiasm while being precise with facts.`;
+    }
+
+    // Add today's date
+    basePrompt += `\n\nToday is ${new Date().toLocaleDateString()}.`;
+    
+    // Add knowledge base data if available
+    if (relevantKnowledge.length > 0) {
+        basePrompt += '\n\nKNOWLEDGE BASE DATA:';
+        relevantKnowledge.forEach(info => {
+            basePrompt += `\n\n${info.type.toUpperCase()}:\n${JSON.stringify(info.content, null, 2)}`;
+        });
+    } else {
+        // Guidance for questions outside knowledge base
+        basePrompt += `\n\nIf asked about information not in the knowledge base:
+- For basic facts about lava, volcanoes, or Icelandic geology, you can answer with general knowledge
+- For specific details about Lava Show schedules, prices, or operations, apologize and offer to help with general information
+- For unrelated topics, politely redirect to Lava Show information`;
+    }
+
+    return basePrompt;
 };
 
-// Generate response for follow-up questions using templates and knowledge
-const generateFollowUpResponse = (followUpData, relevantKnowledge) => {
-    let response = followUpData.response.template;
+// Format response for better readability
+const formatResponse = (response) => {
+    if (!response) return '';
     
-    // Replace template variables with actual content
-    for (const section of followUpData.response.sections) {
-        const sectionContent = relevantKnowledge
-            .filter(k => k.type === section)
-            .map(k => JSON.stringify(k.content, null, 2));
-        response = response.replace(`\${${section}}`, sectionContent);
+    // First, check if response already has paragraphs
+    if (response.includes('\n\n')) return response;
+    
+    // Split long responses into paragraphs (if not already formatted)
+    const sentences = response.split(/(?<=[.!?])\s+/);
+    let paragraphs = [];
+    let currentParagraph = '';
+    
+    sentences.forEach(sentence => {
+        if (currentParagraph.length + sentence.length > 150) {
+            paragraphs.push(currentParagraph.trim());
+            currentParagraph = sentence;
+        } else {
+            currentParagraph += (currentParagraph ? ' ' : '') + sentence;
+        }
+    });
+    
+    if (currentParagraph) {
+        paragraphs.push(currentParagraph.trim());
     }
+    
+    return paragraphs.join('\n\n');
+};
 
-    return response;
+// Price calculation function
+const calculatePricing = (message, context) => {
+    // Base prices
+    const PRICING = {
+        classic: {
+            adult: 5990,      // ISK
+            child: 2990,      // ISK
+            student: 4790,    // ISK
+            senior: 4790      // ISK
+        },
+        premium: {
+            adult: 8990,      // ISK
+            child: 4490,      // ISK
+            student: 7190,    // ISK
+            senior: 7190      // ISK
+        },
+        group: {
+            minSize: 10,
+            discount: 0.15    // 15% discount for groups of 10+
+        },
+        family: {
+            maxAdults: 2,
+            maxChildren: 3,
+            price: 14990      // ISK for family package (2 adults + up to 3 children)
+        }
+    };
+    
+    // Extract information from message and context
+    const messageLower = message.toLowerCase();
+    
+    // Determine package type
+    let packageType = context.bookingInfo.packageType || 
+        (messageLower.includes('premium') ? 'premium' : 'classic');
+    
+    // Group size
+    let groupSize = context.bookingInfo.groupSize;
+    if (!groupSize) {
+        const sizeMatch = messageLower.match(/(\d+)\s*(people|persons|guests|visitors)/i);
+        if (sizeMatch) {
+            groupSize = parseInt(sizeMatch[1]);
+        } else {
+            groupSize = 1; // Default to 1 person
+        }
+    }
+    
+    // Visitor types
+    let adults = groupSize;
+    let children = 0;
+    let students = 0;
+    let seniors = 0;
+    
+    // Check for specific visitor types
+    const adultMatch = messageLower.match(/(\d+)\s*adults?/i);
+    const childMatch = messageLower.match(/(\d+)\s*children|kids|child/i);
+    const studentMatch = messageLower.match(/(\d+)\s*students?/i);
+    const seniorMatch = messageLower.match(/(\d+)\s*seniors?/i);
+    
+    if (adultMatch || childMatch || studentMatch || seniorMatch) {
+        adults = adultMatch ? parseInt(adultMatch[1]) : 0;
+        children = childMatch ? parseInt(childMatch[1]) : 0;
+        students = studentMatch ? parseInt(studentMatch[1]) : 0;
+        seniors = seniorMatch ? parseInt(seniorMatch[1]) : 0;
+        
+        // Update total group size
+        groupSize = adults + children + students + seniors;
+    }
+    
+    // Check for family package
+    const isFamily = messageLower.includes('family') || 
+        (adults <= PRICING.family.maxAdults && 
+         children > 0 && 
+         children <= PRICING.family.maxChildren &&
+         students === 0 && 
+         seniors === 0);
+         
+    // Calculate base pricing
+    let totalPrice = 0;
+    let breakdown = {};
+    
+    if (isFamily) {
+        totalPrice = PRICING.family.price;
+        breakdown = {
+            package: 'Family Package',
+            basePrice: PRICING.family.price,
+            totalPrice: PRICING.family.price,
+            details: 'Family package includes 2 adults and up to 3 children'
+        };
+    } else {
+        // Calculate individual prices
+        const adultPrice = adults * PRICING[packageType].adult;
+        const childPrice = children * PRICING[packageType].child;
+        const studentPrice = students * PRICING[packageType].student;
+        const seniorPrice = seniors * PRICING[packageType].senior;
+        
+        totalPrice = adultPrice + childPrice + studentPrice + seniorPrice;
+        
+        // Check for group discount
+        let discount = 0;
+        if (groupSize >= PRICING.group.minSize) {
+            discount = totalPrice * PRICING.group.discount;
+            totalPrice -= discount;
+        }
+        
+        breakdown = {
+            package: packageType.charAt(0).toUpperCase() + packageType.slice(1),
+            adults: {
+                count: adults,
+                pricePerPerson: PRICING[packageType].adult,
+                total: adultPrice
+            },
+            children: children > 0 ? {
+                count: children,
+                pricePerPerson: PRICING[packageType].child,
+                total: childPrice
+            } : undefined,
+            students: students > 0 ? {
+                count: students,
+                pricePerPerson: PRICING[packageType].student,
+                total: studentPrice
+            } : undefined,
+            seniors: seniors > 0 ? {
+                count: seniors,
+                pricePerPerson: PRICING[packageType].senior,
+                total: seniorPrice
+            } : undefined,
+            groupDiscount: discount > 0 ? {
+                percentage: PRICING.group.discount * 100,
+                amount: discount
+            } : undefined,
+            totalPrice: Math.round(totalPrice),
+            currency: 'ISK'
+        };
+        
+        // Remove undefined properties
+        Object.keys(breakdown).forEach(key => 
+            breakdown[key] === undefined && delete breakdown[key]
+        );
+    }
+    
+    return breakdown;
 };
 
 // Helper function for token management
@@ -358,6 +398,89 @@ const getMaxTokens = (userMessage) => {
     if (isMultiPart) return 500;                // Multi-part questions
     
     return 400;  // Default token count
+};
+
+// Enhanced context analysis and tracking
+const updateContextFromMessage = (context, message, knowledgeMatches) => {
+    // Track knowledge categories that were relevant to this query
+    const queryTopics = knowledgeMatches.map(k => k.type);
+    if (queryTopics.length > 0) {
+        context.conversation.currentTopic = queryTopics[0]; // Most relevant topic
+        context.conversation.topicHistory.push(queryTopics[0]);
+        
+        // Keep topic history manageable
+        if (context.conversation.topicHistory.length > 5) {
+            context.conversation.topicHistory = context.conversation.topicHistory.slice(-5);
+        }
+    }
+    
+    // Analyze message for booking information
+    const messageLower = message.toLowerCase();
+    
+    // Group size detection
+    const groupSizeMatch = messageLower.match(/(\d+)\s*(people|persons|guests|visitors|group)/i);
+    if (groupSizeMatch && !context.bookingInfo.groupSize) {
+        context.bookingInfo.groupSize = parseInt(groupSizeMatch[1]);
+    }
+    
+    // Date detection (simple patterns - could be enhanced)
+    const dateMatch = messageLower.match(/(today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday|\d{1,2}[\/\-\.]\d{1,2}(?:[\/\-\.]\d{2,4})?)/i);
+    if (dateMatch && !context.bookingInfo.preferredDate) {
+        context.bookingInfo.preferredDate = dateMatch[1];
+    }
+    
+    // Time detection
+    const timeMatch = messageLower.match(/(\d{1,2}(?::\d{2})?\s*(?:am|pm)?)/i);
+    if (timeMatch && !context.bookingInfo.preferredTime) {
+        context.bookingInfo.preferredTime = timeMatch[1];
+    }
+    
+    // Package type detection
+    if (messageLower.includes('premium') && !context.bookingInfo.packageType) {
+        context.bookingInfo.packageType = 'premium';
+    } else if (messageLower.includes('classic') && !context.bookingInfo.packageType) {
+        context.bookingInfo.packageType = 'classic';
+    }
+    
+    // Detect user interests
+    const interestKeywords = [
+        'science', 'geology', 'volcano', 'safety', 'education', 
+        'pricing', 'booking', 'schedule', 'location', 'photos'
+    ];
+    
+    interestKeywords.forEach(keyword => {
+        if (messageLower.includes(keyword) && !context.userPreferences.interests.includes(keyword)) {
+            context.userPreferences.interests.push(keyword);
+        }
+    });
+    
+    // Track query type
+    if (messageLower.match(/cost|price|how much|discount/i)) {
+        context.conversation.lastQueryType = 'pricing';
+    } else if (messageLower.match(/book|reserve|when|time|schedule|date/i)) {
+        context.conversation.lastQueryType = 'booking';
+    } else if (messageLower.match(/where|location|address|directions|get there/i)) {
+        context.conversation.lastQueryType = 'location';
+    } else if (messageLower.match(/safety|danger|protect|risk/i)) {
+        context.conversation.lastQueryType = 'safety';
+    } else if (messageLower.match(/science|how|work|temperature|lava/i)) {
+        context.conversation.lastQueryType = 'educational';
+    }
+    
+    // Store previous queries (up to 3)
+    if (context.conversation.lastQueryType) {
+        context.userPreferences.previousQueries.unshift(context.conversation.lastQueryType);
+        if (context.userPreferences.previousQueries.length > 3) {
+            context.userPreferences.previousQueries = context.userPreferences.previousQueries.slice(0, 3);
+        }
+    }
+    
+    console.log('\n📊 Updated Context:', {
+        currentTopic: context.conversation.currentTopic,
+        bookingInfo: context.bookingInfo,
+        interests: context.userPreferences.interests,
+        queryType: context.conversation.lastQueryType
+    });
 };
 
 // Helper function to enforce terminology
@@ -404,63 +527,43 @@ app.get('/chat', (req, res) => {
 
 // Main chat endpoint
 app.post('/chat', verifyApiKey, async (req, res) => {
-    let context;
     try {
         console.log('\n📝 Incoming Message:', req.body.message);
         
         const userMessage = req.body.message;
-        const sessionId = req.sessionId || `session_${Date.now()}`;
+        const userLanguage = req.body.language || 'en';
+        const sessionId = req.body.sessionId || `session_${Date.now()}`;
 
         // Check cache
-        const cacheKey = `${sessionId}:${userMessage.toLowerCase().trim()}`;
+        const cacheKey = `${sessionId}:${userMessage.toLowerCase().trim()}:${userLanguage}`;
         const cached = responseCache.get(cacheKey);
         if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
             console.log('\n📦 Using cached response');
             return res.json(cached.response);
         }
 
-        // Handle greetings
-        const greetings = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'];
-        if (greetings.includes(userMessage.toLowerCase().trim())) {
-            const greeting = GREETING_RESPONSES[Math.floor(Math.random() * GREETING_RESPONSES.length)];
-            
-            // Update context
-            context = updateContext(sessionId, userMessage, greeting);
-            context.conversationStarted = true;
-
-            return res.status(200).json({
-                message: greeting
-            });
-        }
-
-        // Initialize context
-        context = conversationContext.get(sessionId) || {
+        // Get conversation history with enhanced context tracking
+        let context = conversationContext.get(sessionId) || {
             messages: [],
             lastInteraction: Date.now(),
-            conversationStarted: false,
-            messageCount: 0,
-            lastTopic: null,
-            offeredFollowUp: null,
-            pendingFollowUp: null,
-            lastResponse: null
-        };
-
-        // Check for follow-up acknowledgment first
-        if (context?.pendingFollowUp) {
-            const isAcknowledgment = userMessage.toLowerCase().match(/^(yes|yeah|sure|okay|ok|definitely|please|tell me|id like that|i would|go ahead)$/);
-            if (isAcknowledgment) {
-                const followUpData = FOLLOW_UP_CONTEXTS[context.pendingFollowUp];
-                if (followUpData) {
-                    // Handle follow-up response
-                    const relevantKnowledge = getRelevantKnowledge(followUpData.response.sections.join(' '));
-                    const response = generateFollowUpResponse(followUpData, relevantKnowledge);
-                    
-                    // Update context and return response
-                    updateContext(sessionId, userMessage, response);
-                    return res.json({ message: response });
-                }
+            userPreferences: {
+                language: userLanguage,
+                interests: [],       // Track what topics the user is interested in
+                previousQueries: []  // Store previous query types
+            },
+            bookingInfo: {
+                groupSize: null,
+                preferredDate: null,
+                preferredTime: null,
+                packageType: null,
+                specialRequests: null
+            },
+            conversation: {
+                currentTopic: null,
+                topicHistory: [],    // Track conversation flow
+                lastQueryType: null  // Categorize last query (booking, info, pricing, etc.)
             }
-        }
+        };
 
         // Get relevant knowledge
         const relevantKnowledge = getRelevantKnowledge(userMessage);
@@ -469,38 +572,33 @@ app.post('/chat', verifyApiKey, async (req, res) => {
             types: relevantKnowledge.map(k => k.type)
         });
 
-        // Enhanced system prompt with knowledge base content
-        let systemPrompt = `${SYSTEM_PROMPTS.base_prompt}\n\nToday is ${new Date().toLocaleDateString()}.`;
-        
-        if (relevantKnowledge.length > 0) {
-            systemPrompt += '\n\nKNOWLEDGE BASE DATA:';
-            relevantKnowledge.forEach(info => {
-                systemPrompt += `\n\n${info.type.toUpperCase()}:\n${JSON.stringify(info.content, null, 2)}`;
-            });
-        }
+        // Create base system prompt with Tinna's personality
+        let systemPrompt = generateSystemPrompt(userLanguage, relevantKnowledge);
 
         // Prepare messages array
         const messages = [
-            { 
-                role: "system", 
-                content: systemPrompt
-            }
+            { role: "system", content: systemPrompt }
         ];
 
-        // Add context awareness
+        // Add conversation history (limited to last 5 messages for context)
         if (context.messages && context.messages.length > 0) {
             messages.push(...context.messages.slice(-5));
         }
 
-        // Add user message
+        // Check if we need to calculate pricing
+        const isPricingQuery = userMessage.toLowerCase().match(/cost|price|how much|discount/i);
+        let calculatedPricing = null;
+        
+        if (isPricingQuery) {
+            calculatedPricing = calculatePricing(userMessage, context);
+            console.log('\n💰 Price calculation:', calculatedPricing);
+        }
+        
+        // Add user message with any pricing calculations
         messages.push({
             role: "user",
-            content: `Knowledge Base Information: ${JSON.stringify(relevantKnowledge)}
-            
-            User Question: ${userMessage}
-            
-            Please provide a natural, conversational response using ONLY the information from the knowledge base. 
-            Be specific and accurate with details like times, prices, and safety information.`
+            content: userMessage + (calculatedPricing ? 
+                `\n\nCalculated pricing information: ${JSON.stringify(calculatedPricing, null, 2)}` : '')
         });
 
         // Make GPT-4 request with retries
@@ -544,31 +642,40 @@ app.post('/chat', verifyApiKey, async (req, res) => {
 
         // Apply terminology enhancement
         const enhancedResponse = enforceTerminology(response);
-        console.log('\n✨ Enhanced Response:', enhancedResponse);
+        
+        // Format response for better readability
+        const formattedResponse = formatResponse(enhancedResponse);
+        console.log('\n✨ Final Response:', formattedResponse);
+
+        // Update conversation context
+        context.messages.push({ role: "user", content: userMessage });
+        context.messages.push({ role: "assistant", content: formattedResponse });
+        
+        // Maintain reasonable history size
+        if (context.messages.length > 10) {
+            context.messages = context.messages.slice(-10);
+        }
+        
+        // Update context with conversation analysis
+        updateContextFromMessage(context, userMessage, relevantKnowledge);
+        
+        context.lastInteraction = Date.now();
+        conversationContext.set(sessionId, context);
 
         // Cache the response
         responseCache.set(cacheKey, {
             response: {
-                message: enhancedResponse
+                message: formattedResponse
             },
             timestamp: Date.now()
         });
 
-        // Update conversation context
-        context = updateContext(sessionId, userMessage, enhancedResponse);
-        
-        // Return enhanced response
+        // Return response
         return res.status(200).json({
-            message: enhancedResponse
+            message: formattedResponse
         });
 
     } catch (error) {
-        // Update last interaction time even on error
-        if (context) {
-            context.lastInteraction = Date.now();
-            conversationContext.set(sessionId, context);
-        }
-
         logError(error, {
             message: req.body?.message
         });
@@ -646,4 +753,4 @@ process.on('SIGTERM', () => {
     });
 });
 
-export default app;            
+export default app;

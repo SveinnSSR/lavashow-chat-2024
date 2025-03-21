@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 20px;
     font-family: Arial, sans-serif;
+    background: #000000;  /* Dark background for Lava Show theme */
 }
 
 .chat-widget {
@@ -10,22 +11,24 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: white;
+    background: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
 }
 
 .chat-header {
     padding: 15px;
-    background: #FF4B12;  /* Lava Show orange */
+    background: #FF4B12;
     color: white;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     display: flex;
     align-items: center;
     gap: 10px;
+    box-shadow: 0 2px 10px rgba(255, 75, 18, 0.2);
 }
 
 .chat-header .logo {
@@ -36,33 +39,53 @@ body {
 .chat-header h2 {
     margin: 0;
     font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .chat-messages {
     flex-grow: 1;
     padding: 15px;
     overflow-y: auto;
-    background: #f5f5f5;
+    background: #f8f8f8;
+}
+
+.message-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+.bot-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .message {
-    margin-bottom: 10px;
     max-width: 80%;
-    padding: 10px;
+    padding: 12px 16px;
     border-radius: 15px;
     line-height: 1.4;
+    transition: all 0.3s ease;
 }
 
 .user-message {
-    background: #E3F2FD;
+    background: linear-gradient(145deg, #FF4B12, #ff6b3d);
+    color: white;
     margin-left: auto;
     border-bottom-right-radius: 5px;
+    box-shadow: 0 2px 8px rgba(255, 75, 18, 0.1);
 }
 
 .bot-message {
-    background: white;
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    color: #333;
     margin-right: auto;
     border-bottom-left-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .chat-input-area {
@@ -71,33 +94,70 @@ body {
     border-top: 1px solid #eee;
     display: flex;
     gap: 10px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 #chat-input {
     flex-grow: 1;
-    padding: 10px;
+    padding: 12px 16px;
     border: 1px solid #ddd;
     border-radius: 20px;
     outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#chat-input:focus {
+    border-color: #FF4B12;
 }
 
 #send-button {
     padding: 10px 20px;
-    background: #FF4B12;  /* Lava Show orange */
+    background: #FF4B12;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 #send-button:hover {
-    background: #E64400;  /* Darker orange */
+    background: #E64400;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 75, 18, 0.2);
 }
 
-/* Update message colors to match Lava Show theme */
-.user-message {
-    background: #FFE5D9;  /* Light orange */
-    margin-left: auto;
-    border-bottom-right-radius: 5px;
+#send-button:active {
+    transform: translateY(0);
+}
+
+/* Scrollbar Styling */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #FF4B12;
+    border-radius: 3px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .chat-widget {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+
+    .chat-header {
+        border-radius: 0;
+    }
 }
