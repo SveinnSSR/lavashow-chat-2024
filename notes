@@ -1,0 +1,11 @@
+notes
+
+
+git add .
+git commit -m "Enhanced index js and full knowledgebase with new context tracking and price calculation"
+git push origin main
+
+
+git add .
+git commit -m "Enhanced MessageFormatter with improved paragraph handling and URL detection"
+git push origin main

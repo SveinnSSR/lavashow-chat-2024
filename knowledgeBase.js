@@ -105,15 +105,30 @@ function classifyQuery(message) {
 
 // The main knowledge base object - keeping your existing content exactly as is
 export const knowledgeBase = {
+    website_links: {
+        main: "https://www.lavashow.com",
+        booking: "https://www.lavashow.com/tickets",
+        reykjavik: {
+            tickets: "https://www.lavashow.com/reykjavik",
+            location: "https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391"
+        },
+        vik: {
+            tickets: "https://www.lavashow.com/vik",
+            location: "https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1"
+        },
+        gift_cards: "https://www.lavashow.com/giftcard",
+        about: "https://www.lavashow.com/about"
+    },
     general_info: {
         tagline: "LAVA SHOW recreates a volcanic eruption by superheating real lava up to 1100°C (2000°F) and then pouring it into a showroom full of people.",
-        description: "Lava Show is the only live lava show in the world and has received multiple innovation awards and recognition for its educational and cultural value. With outstanding customer reviews.",
+        description: "Lava Show is the only live lava show in the world and has received multiple innovation awards and recognition for its educational and cultural value. With outstanding customer reviews. [Visit Lava Show Website](https://www.lavashow.com)",
         awards: ["2024 Tripadvisor Best of the Best"],
         locations: {
             reykjavik: {
                 name: "LAVA SHOW in Reykjavík",
                 address: "Fiskislóð 73, 101 Reykjavík",
-                description: "Our brand new location is located in Reykjavík, which is world-renowned for its culture, history, and natural beauty on all fronts. In the heart of Reykjavik.",
+                description: "Our brand new location is located in Reykjavík, which is world-renowned for its culture, history, and natural beauty on all fronts. In the heart of Reykjavik. [View on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391)",
+                booking_link: "[Book Reykjavík Experience](https://www.lavashow.com/reykjavik)",
                 capacity: {
                     classic: "82 seats (can be expanded to 86)",
                     premium: "30 seats (can be expanded to 32)",
@@ -124,7 +139,8 @@ export const knowledgeBase = {
             vik: {
                 name: "LAVA SHOW in Vík",
                 address: "Víkurbraut 5, 870 Vík",
-                description: "Vík is a charming town nestled in the midst of Katla UNESCO Global Geopark, surrounded by volcanoes, glaciers, and black sand beaches. 190km (118 miles) away from Reykjavík.",
+                description: "Vík is a charming town nestled in the midst of Katla UNESCO Global Geopark, surrounded by volcanoes, glaciers, and black sand beaches. 190km (118 miles) away from Reykjavík. [View on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1)",
+                booking_link: "[Book Vík Experience](https://www.lavashow.com/vik)",
                 capacity: {
                     current: "50 seats (can be expanded to 54/55)",
                     future: "Expanding to 65 seats by end of January 2025"
@@ -139,14 +155,14 @@ export const knowledgeBase = {
             vik_desk: "+354 835 6777",
             hours: {
                 phone_support: "9 AM - 7 PM",
-                website: "www.lavashow.com"
+                website: "[www.lavashow.com](https://www.lavashow.com)"
             }
         }
     },
     experiences: {
         classic: {
             name: "Classic Experience",
-            description: "The award-winning Lava Show immersive experience",
+            description: "The award-winning Lava Show immersive experience. [Book Classic Experience](https://www.lavashow.com/tickets)",
             duration: "45-55 minutes",
             pricing: {
                 adults: "5,900 ISK (13+)",
@@ -166,7 +182,7 @@ export const knowledgeBase = {
         },
         premium: {
             name: "Premium Experience",
-            description: "Takes the award-winning Classic Experience to new heights",
+            description: "Takes the award-winning Classic Experience to new heights. [Book Premium Experience](https://www.lavashow.com/tickets)",
             duration: "60-75 minutes",
             price: "9,900 ISK",
             age_restriction: "Adults only (13+)",
@@ -192,7 +208,8 @@ export const knowledgeBase = {
                 "No refunds for no-shows",
                 "No refunds for late arrivals",
                 "Rescheduling possible based on availability"
-            ]
+            ],
+            booking_link: "[Book Your Experience](https://www.lavashow.com/tickets)"
         },
         arrival: {
             recommendation: "We suggest arriving at least 20 minutes early",
@@ -404,7 +421,8 @@ export const knowledgeBase = {
                         alternative: "Elegant version available on request"
                     },
                     physical: "Available for pickup in Reykjavík or Vík"
-                }
+                },
+                purchase_link: "Give the gift of an unforgettable volcanic experience. [Purchase Gift Cards](https://www.lavashow.com/giftcard)"
             }
         }
     },
@@ -1944,11 +1962,52 @@ export const getRelevantKnowledge = (userMessage, context = null) => {
         expandedMessage.includes('how to get') ||
         expandedMessage.includes('getting there') ||
         expandedMessage.includes('find you')) {
+        
+        // Use the original reference to maintain type safety
         relevantInfo.push({
             type: 'general_info',
             content: knowledgeBase.general_info.locations,
             priority: 8
         });
+        
+        // Add location-specific map links as a separate item
+        if (expandedMessage.includes('reykjavik') || expandedMessage.includes('reykjavík')) {
+            relevantInfo.push({
+                type: 'location_link_reykjavik',
+                content: "[View Reykjavík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391)",
+                priority: 9
+            });
+            
+            relevantInfo.push({
+                type: 'booking_link_reykjavik',
+                content: "[Book Reykjavík Experience](https://www.lavashow.com/reykjavik)",
+                priority: 9
+            });
+        } 
+        else if (expandedMessage.includes('vik') || expandedMessage.includes('vík')) {
+            relevantInfo.push({
+                type: 'location_link_vik',
+                content: "[View Vík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1)",
+                priority: 9
+            });
+            
+            relevantInfo.push({
+                type: 'booking_link_vik',
+                content: "[Book Vík Experience](https://www.lavashow.com/vik)",
+                priority: 9
+            });
+        }
+        else {
+            // For general location queries, add both map links
+            relevantInfo.push({
+                type: 'location_links',
+                content: {
+                    reykjavik: "[View Reykjavík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391)",
+                    vik: "[View Vík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1)"
+                },
+                priority: 8
+            });
+        }
 
         // If asking about nearby attractions
         if (expandedMessage.includes('area') || 
@@ -2035,9 +2094,21 @@ export const getRelevantKnowledge = (userMessage, context = null) => {
         expandedMessage.includes('sér') ||
         expandedMessage.includes('ticket') ||
         expandedMessage.includes('admission')) {
+        
+        // Use the original reference to maintain type safety
         relevantInfo.push({
             type: 'experiences',
             content: knowledgeBase.experiences,
+            priority: 8
+        });
+        
+        // Add booking links as separate items
+        relevantInfo.push({
+            type: 'experience_links',
+            content: {
+                classic: "[Book Classic Experience](https://www.lavashow.com/tickets)",
+                premium: "[Book Premium Experience](https://www.lavashow.com/tickets)"
+            },
             priority: 8
         });
 
@@ -2046,10 +2117,19 @@ export const getRelevantKnowledge = (userMessage, context = null) => {
             expandedMessage.includes('cost') || 
             expandedMessage.includes('book') ||
             expandedMessage.includes('reserve')) {
+            
+            // Add original booking policies
             relevantInfo.push({
                 type: 'booking_policies',
                 content: knowledgeBase.booking_policies,
                 priority: 7
+            });
+            
+            // Add a direct booking link as a high priority item
+            relevantInfo.push({
+                type: 'booking_link',
+                content: "Ready to experience the world's only live lava show? [Book Now](https://www.lavashow.com/tickets)",
+                priority: 9
             });
         }
     }
@@ -2094,6 +2174,32 @@ export const getRelevantKnowledge = (userMessage, context = null) => {
             priority: 8
         });
     }
+
+    // Gift cards (ADD THIS NEW SECTION HERE)
+    if (expandedMessage.includes('gift card') || 
+        expandedMessage.includes('gift certificate') ||
+        expandedMessage.includes('gift ticket') ||
+        expandedMessage.includes('present card') ||
+        expandedMessage.includes('give as gift') ||
+        expandedMessage.includes('buy gift') ||
+        expandedMessage.includes('purchase gift')) {
+        
+        // Add gift card information if available in gift_shop
+        if (knowledgeBase.gift_shop && knowledgeBase.gift_shop.gift_cards) {
+            relevantInfo.push({
+                type: 'gift_cards',
+                content: knowledgeBase.gift_shop.gift_cards,
+                priority: 8
+            });
+        }
+        
+        // Add gift card purchase link
+        relevantInfo.push({
+            type: 'gift_card_link',
+            content: "Give the gift of an unforgettable volcanic experience. [Purchase Gift Cards](https://www.lavashow.com/giftcard)",
+            priority: 9
+        });
+    }    
 
     // Opening hours and timing
     if (expandedMessage.includes('open') || 
