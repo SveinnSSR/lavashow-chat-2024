@@ -72,6 +72,9 @@ const openai = new OpenAI({
 // Initialize Express
 const app = express();
 
+// Add this line to trust proxy headers
+app.set('trust proxy', 1);  // trust first proxy
+
 // CORS Configuration
 const corsOptions = {
     origin: [
