@@ -356,14 +356,70 @@ const calculatePricing = (message, context) => {
     const childMatch = messageLower.match(/(\d+)\s*children|kids|child/i);
     const studentMatch = messageLower.match(/(\d+)\s*students?/i);
     const seniorMatch = messageLower.match(/(\d+)\s*seniors?/i);
+    const teenMatch = messageLower.match(/(\d+)\s*(teenagers?|teens?|young adults?)/i);
     
-    if (adultMatch || childMatch || studentMatch || seniorMatch) {
+    // Reset visitor counts if any specific types are mentioned
+    if (adultMatch || childMatch || studentMatch || seniorMatch || teenMatch) {
         adults = adultMatch ? parseInt(adultMatch[1]) : 0;
         children = childMatch ? parseInt(childMatch[1]) : 0;
         students = studentMatch ? parseInt(studentMatch[1]) : 0;
         seniors = seniorMatch ? parseInt(seniorMatch[1]) : 0;
         
+        // Add teenagers as adults (since they're 13+ and pay adult price)
+        if (teenMatch) {
+            const teenCount = parseInt(teenMatch[1]);
+            adults += teenCount;
+            
+            // Log teenage detection
+            console.log(`🧒 Detected ${teenCount} teenagers, adding to adult count`);
+        }
+        
         // Update total group size
+        groupSize = adults + children + students + seniors;
+    }
+    
+    // NEW: Check for specific ages in the message (like "15 year old")
+    const agePattern = /(\d+)\s*(?:year|yr)s?\s*olds?/gi;
+    let ageMatch;
+    let ageAdults = 0;
+    let ageChildren = 0;
+    
+    // Reset the regex state to start fresh
+    agePattern.lastIndex = 0;
+    
+    while ((ageMatch = agePattern.exec(messageLower)) !== null) {
+        const age = parseInt(ageMatch[1]);
+        console.log(`🔍 Detected specific age: ${age} years old`);
+        
+        if (age >= 13) {
+            // For Premium Experience or Classic, 13+ pays adult price
+            ageAdults++;
+            console.log(`👥 Adding person age ${age} as adult (13+)`);
+        } else {
+            // For Classic Experience, under 13 is child price
+            if (packageType === 'classic') {
+                ageChildren++;
+                console.log(`👶 Adding person age ${age} as child (under 13)`);
+            } else {
+                // For Premium, no one under 13 is allowed, but we'll count them as adults for calculation
+                console.log(`⚠️ Premium Experience age restriction (13+), but counting in calculation`);
+                ageAdults++;
+            }
+        }
+    }
+    
+    // If we found specific ages but no explicit adult/child counts, use these instead
+    if ((ageAdults > 0 || ageChildren > 0) && !adultMatch && !childMatch && !teenMatch) {
+        console.log(`👥 Using age-based counts: ${ageAdults} adults, ${ageChildren} children`);
+        adults = ageAdults;
+        children = ageChildren;
+        groupSize = adults + children + students + seniors;
+    } 
+    // If we found specific ages AND explicit counts, add them to the existing counts
+    else if (ageAdults > 0 || ageChildren > 0) {
+        console.log(`👥 Adding age-based counts to explicit counts`);
+        adults += ageAdults;
+        children += ageChildren;
         groupSize = adults + children + students + seniors;
     }
     
@@ -390,7 +446,17 @@ const calculatePricing = (message, context) => {
     } else {
         // Calculate individual prices
         const adultPrice = adults * PRICING[packageType].adult;
-        const childPrice = children * PRICING[packageType].child;
+        
+        // For Premium Experience, children aren't allowed (minimum age 13+)
+        let childPrice = 0;
+        if (packageType === 'premium' && children > 0) {
+            console.log(`⚠️ Premium Experience has age restriction (13+), treating children as adults for pricing`);
+            adultPrice += children * PRICING[packageType].adult;
+            children = 0; // Reset children count as they're now counted as adults
+        } else {
+            childPrice = children * PRICING[packageType].child;
+        }
+        
         const studentPrice = students * PRICING[packageType].student;
         const seniorPrice = seniors * PRICING[packageType].senior;
         
@@ -438,6 +504,10 @@ const calculatePricing = (message, context) => {
             breakdown[key] === undefined && delete breakdown[key]
         );
     }
+    
+    // Log the final calculation
+    console.log(`💰 Final price calculation for ${adults} adults, ${children} children, ${students} students, ${seniors} seniors:`);
+    console.log(`   Package: ${packageType}, Total: ${totalPrice} ISK`);
     
     return breakdown;
 };
