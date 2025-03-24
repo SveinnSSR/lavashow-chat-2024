@@ -128,7 +128,8 @@ export const knowledgeBase = {
                 name: "LAVA SHOW in Reykjavík",
                 address: "Fiskislóð 73, 101 Reykjavík",
                 description: "Our brand new location is located in Reykjavík, which is world-renowned for its culture, history, and natural beauty on all fronts. In the heart of Reykjavik. [View on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391)",
-                booking_link: "[Book Reykjavík Experience](https://www.lavashow.com/reykjavik)",
+                map_url: "https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391",
+                booking_url: "https://www.lavashow.com/reykjavik",            
                 capacity: {
                     classic: "82 seats (can be expanded to 86)",
                     premium: "30 seats (can be expanded to 32)",
@@ -140,7 +141,8 @@ export const knowledgeBase = {
                 name: "LAVA SHOW in Vík",
                 address: "Víkurbraut 5, 870 Vík",
                 description: "Vík is a charming town nestled in the midst of Katla UNESCO Global Geopark, surrounded by volcanoes, glaciers, and black sand beaches. 190km (118 miles) away from Reykjavík. [View on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1)",
-                booking_link: "[Book Vík Experience](https://www.lavashow.com/vik)",
+                map_url: "https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1",
+                booking_url: "https://www.lavashow.com/vik",            
                 capacity: {
                     current: "50 seats (can be expanded to 54/55)",
                     future: "Expanding to 65 seats by end of January 2025"
@@ -1973,37 +1975,42 @@ export const getRelevantKnowledge = (userMessage, context = null) => {
         // Add location-specific map links as a separate item
         if (expandedMessage.includes('reykjavik') || expandedMessage.includes('reykjavík')) {
             relevantInfo.push({
-                type: 'location_link_reykjavik',
-                content: "[View Reykjavík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391)",
-                priority: 9
-            });
-            
-            relevantInfo.push({
-                type: 'booking_link_reykjavik',
-                content: "[Book Reykjavík Experience](https://www.lavashow.com/reykjavik)",
+                type: 'location_links',
+                content: {
+                    location: "reykjavik",
+                    name: "Reykjavík",
+                    map_url: knowledgeBase.general_info.locations.reykjavik.map_url,
+                    booking_url: knowledgeBase.general_info.locations.reykjavik.booking_url
+                },
                 priority: 9
             });
         } 
         else if (expandedMessage.includes('vik') || expandedMessage.includes('vík')) {
             relevantInfo.push({
-                type: 'location_link_vik',
-                content: "[View Vík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1)",
-                priority: 9
-            });
-            
-            relevantInfo.push({
-                type: 'booking_link_vik',
-                content: "[Book Vík Experience](https://www.lavashow.com/vik)",
+                type: 'location_links',
+                content: {
+                    location: "vik",
+                    name: "Vík",
+                    map_url: knowledgeBase.general_info.locations.vik.map_url,
+                    booking_url: knowledgeBase.general_info.locations.vik.booking_url
+                },
                 priority: 9
             });
         }
         else {
-            // For general location queries, add both map links
+            // For general location queries, add a simple indicator to show both locations
             relevantInfo.push({
                 type: 'location_links',
                 content: {
-                    reykjavik: "[View Reykjavík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391)",
-                    vik: "[View Vík Location on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1)"
+                    show_both: true,
+                    reykjavik: {
+                        name: "Reykjavík",
+                        map_url: knowledgeBase.general_info.locations.reykjavik.map_url
+                    },
+                    vik: {
+                        name: "Vík",
+                        map_url: knowledgeBase.general_info.locations.vik.map_url
+                    }
                 },
                 priority: 8
             });

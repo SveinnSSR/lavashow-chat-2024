@@ -212,9 +212,13 @@ Maintain enthusiasm while being precise with facts.`;
     // ADD WEBSITE LINKS GUIDELINES HERE
     basePrompt += `\n\nWEBSITE LINKS GUIDELINES:
 1. For Location Info:
-   - ALWAYS include maps link for Reykjavík: "[View on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+Fiskisl%C3%B3%C3%B0+73+101+Reykjav%C3%ADk/@64.1569653,-21.9430121,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x48d6757d1ade5e2d:0x69b61da06072064f!2m2!1d-21.9429663!2d64.1569391)"
-   - ALWAYS include maps link for Vík: "[View on Google Maps 📍](https://www.google.com/maps/dir//Lava+Show+in+V%C3%ADk+V%C3%ADkurbraut+5+870+870+Vik/@63.4183709,-19.0101997,14z/data=!4m5!4m4!1m0!1m2!1s0x48d74b1db5e98aa1:0xa197ddd0bfc5ebf1)"
-   - Include AFTER initial location description
+   - For Reykjavík location: Format map link as "[View Reykjavík Location on Google Maps 📍](map_url)"
+   - For Vík location: Format map link as "[View Vík Location on Google Maps 📍](map_url)"
+   - For booking links: Format as "[Book Name Experience](booking_url)"
+   - When showing both locations, only include ONE map link for EACH location
+   - NEVER duplicate or nest map links inside other URLs
+   - Include links AFTER the location description, not within it
+
 
 2. For Booking and Tickets:
    - Main Booking Page: "[Book Your Experience](https://www.lavashow.com/tickets)"

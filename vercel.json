@@ -27,5 +27,10 @@
             "src": "/(.*)",
             "dest": "public/$1"
         }
-    ]
+    ],
+    "functions": {
+        "*.js": {
+            "maxDuration": 30
+        }
+    }
 }
