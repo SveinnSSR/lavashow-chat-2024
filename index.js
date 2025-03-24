@@ -236,6 +236,24 @@ Maintain enthusiasm while being precise with facts.`;
    - When mentioning gift options, add: "[View Gift Cards](https://www.lavashow.com/giftcard)"
    - When sharing general information about shows, add: "[Learn More](https://www.lavashow.com)"`;
 
+    // ADD NEW PRICING QUERY GUIDELINES HERE
+    basePrompt += `\n\nPRICING QUERY GUIDELINES:
+1. When answering pricing questions:
+   - ALWAYS use the exact pricing from the 'Calculated pricing information' JSON when provided
+   - NEVER state that any age group gets free admission unless explicitly stated in the calculation
+   - Children (12 and younger) pay 3,500 ISK for Classic Experience, NOT free
+   - Adults (13+) pay 5,900 ISK for Classic Experience
+   - For Premium Experience: Adults (13+) pay 9,900 ISK
+   - The Premium Experience has an age restriction of 13+
+   - Always calculate the total correctly by multiplying the number of people by their respective prices
+   - Children are NEVER free - make sure to include their cost in the total
+
+2. Response Format:
+   - Clearly state the individual costs (adults, children, etc.)
+   - Show the total cost
+   - Include the "[Book Now](https://www.lavashow.com/tickets)" link
+   - Be friendly but accurate with pricing`;   
+
     return basePrompt;
 };
 
