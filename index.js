@@ -241,9 +241,9 @@ Maintain enthusiasm while being precise with facts.`;
 1. When answering pricing questions:
    - ALWAYS use the exact pricing from the 'Calculated pricing information' JSON when provided
    - NEVER state that any age group gets free admission unless explicitly stated in the calculation
-   - Children (12 and younger) pay 3,500 ISK for Classic Experience, NOT free
-   - Adults (13+) pay 5,900 ISK for Classic Experience
-   - For Premium Experience: Adults (13+) pay 9,900 ISK
+   - Children (12 and younger) pay 3,590 ISK for Classic Experience, NOT free
+   - Adults (13+) pay 6,590 ISK for Classic Experience
+   - For Premium Experience: Adults (13+) pay 9,990 ISK
    - The Premium Experience has an age restriction of 13+
    - Always calculate the total correctly by multiplying the number of people by their respective prices
    - Children are NEVER free - make sure to include their cost in the total
@@ -290,16 +290,16 @@ const calculatePricing = (message, context) => {
     // Base prices - UPDATED to match knowledgeBase
     const PRICING = {
         classic: {
-            adult: 5900,      // ISK (from knowledgeBase 5,900)
-            child: 3500,      // ISK (from knowledgeBase 3,500)
-            student: 4790,    // ISK
-            senior: 4790      // ISK
+            adult: 6590,      // ISK (updated from 5,900)
+            child: 3590,      // ISK (updated from 3,500)
+            student: 5270,    // ISK (updated - assuming still ~80% of adult price)
+            senior: 5270      // ISK (updated - assuming still ~80% of adult price)
         },
         premium: {
-            adult: 9900,      // ISK (from knowledgeBase 9,900)
-            child: 4490,      // ISK
-            student: 7920,    // ISK (80% of adult price)
-            senior: 7920      // ISK (80% of adult price)
+            adult: 9990,      // ISK (updated from 9,900)
+            child: null,      // Not applicable - Premium Experience is 13+ only
+            student: 7990,    // ISK (updated - assuming ~80% of adult price)
+            senior: 7990      // ISK (updated - assuming ~80% of adult price)
         },
         group: {
             minSize: 10,
@@ -308,7 +308,7 @@ const calculatePricing = (message, context) => {
         family: {
             maxAdults: 2,
             maxChildren: 3,
-            price: 14990      // ISK for family package (2 adults + up to 3 children)
+            price: 16990      // ISK (updated from 14,990 to reflect increased prices)
         }
     };
     

@@ -165,8 +165,8 @@ export const knowledgeBase = {
             description: "The award-winning Lava Show immersive experience. [Book Classic Experience](https://www.lavashow.com/tickets)",
             duration: "45-55 minutes",
             pricing: {
-                adults: "5,900 ISK (13+)",
-                children: "3,500 ISK (age 12 and younger)"
+                adults: "6,590 ISK (13+)",              // Updated from 5,900
+                children: "3,590 ISK (age 12 and younger)" // Updated from 3,500
             },
             includes: [
                 "Live lava demonstration",
@@ -184,7 +184,7 @@ export const knowledgeBase = {
             name: "Premium Experience",
             description: "Takes the award-winning Classic Experience to new heights. [Book Premium Experience](https://www.lavashow.com/tickets)",
             duration: "60-75 minutes",
-            price: "9,900 ISK",
+            price: "9,990 ISK",                       // Updated from 9,900
             age_restriction: "Adults only (13+)",
             includes: [
                 "Aperitif (drink) upon arrival",
