@@ -209,7 +209,6 @@ Maintain enthusiasm while being precise with facts.`;
 - For unrelated topics, politely redirect to Lava Show information`;
     }
 
-    // For empty commit
     // ADD WEBSITE LINKS GUIDELINES HERE
     basePrompt += `\n\nWEBSITE LINKS GUIDELINES:
 1. For Location Info:
